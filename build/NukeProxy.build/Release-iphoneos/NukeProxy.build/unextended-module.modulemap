@@ -1,0 +1,10 @@
+framework module NukeProxy {
+  umbrella header "NukeProxy.h"
+
+  export *
+  module * { export * }
+}
+
+module NukeProxy.__Swift {
+    exclude header "NukeProxy-Swift.h"
+}
