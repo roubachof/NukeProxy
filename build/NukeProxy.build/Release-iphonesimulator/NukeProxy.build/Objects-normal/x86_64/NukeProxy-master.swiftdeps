@@ -1,5 +1,0 @@
-version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
-options: "12c91794e56f79c82c6248be0ec753b9"
-build_time: [1583667179, 96920000]
-inputs:
-  "/Users/roubachof/Dev/NukeProxy/NukeProxy/NukeProxy.swift": [9223372036, 854775807]
