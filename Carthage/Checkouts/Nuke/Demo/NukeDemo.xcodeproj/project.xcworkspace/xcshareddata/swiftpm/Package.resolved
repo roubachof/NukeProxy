@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": null,
+          "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
+          "version": "5.2.1"
+        }
+      },
+      {
+        "package": "Gifu",
+        "repositoryURL": "https://github.com/kaishin/Gifu.git",
+        "state": {
+          "branch": null,
+          "revision": "b6fc594b30d0949a788338c54b07c26ae40c3444",
+          "version": "3.2.2"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke",
+        "state": {
+          "branch": "master",
+          "revision": "05b2528cc7a1432226eaea6a19c392dfd2d74292",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftSVG",
+        "repositoryURL": "https://github.com/mchoe/SwiftSVG.git",
+        "state": {
+          "branch": null,
+          "revision": "c3a8866a25ace169ee8e5c037670ba14aa59606f",
+          "version": "2.3.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
