@@ -1,0 +1,3 @@
+[submodule "Nuke"]
+	path = Nuke
+	url = https://github.com/kean/Nuke.git
