@@ -7,7 +7,7 @@ SWIFT_PROJECT_NAME="NukeProxy"
 SWIFT_PROJECT_PATH="$SWIFT_PROJECT_NAME.xcodeproj"
 SWIFT_BUILD_PATH="build"
 SWIFT_OUTPUT_PATH="Output/NukeProxy"
-XAMARIN_BINDING_PATH="../Xamarin.Nuke"
+XAMARIN_BINDING_PATH="Xamarin.Nuke"
 
 echo "Build iOS framework for simulator and device"
 rm -Rf "$SWIFT_BUILD_PATH"
