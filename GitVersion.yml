@@ -1,0 +1,15 @@
+mode: mainline
+branches:
+  master:
+    regex: ^master$|^main$
+    tag: ''
+  feature:
+    regex: ^features?[/-]
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+  bugfix:
+    regex: ^bugfix(es)?[/-]
+    increment: Patch
+    tag: useBranchName
+    prevent-increment-of-merged-branch-version: false
+    source-branches: ['master', 'main', 'develop', 'feature', 'hotfix', 'support']
