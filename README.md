@@ -1,0 +1,25 @@
+# NukeProxy
+
+This is a small Xamarin.iOS binding Proxy for [Nuke][nuke]. Since Nuke is a Swift library, which doesn't expose its code with `@objc` annotations, we cannot bind it directly and need a proxy for this.
+This proxy provides enough API for [Xamarin.Forms.Nuke][xformsnuke] to function. If you need more of Nukes API to be surfaced, PRs are welcome.
+
+## Installation
+
+NuGet:
+
+> Install-Package Xamarin.Nuke
+
+## Exposing more API
+
+Open the NukeProxy.xcodeproj in Xcode and add more code to `NukeProxy.swift`.
+
+Make sure to annotate correctly with `@objc`. Refer to the other code and [Xamarin.iOS Swift Bindings][bindings]. When done adding more code, ensure project builds:
+
+1. Run `sh build-fat.sh` from commandline
+2. Copy the new definitions from the `sharpie_output` folder into the `Xamarin.Nuke` C# project
+3. Adjust the definitions and ensure the project builds
+4. Create a PR to this repository
+
+[nuke]:https://github.com/kean/Nuke
+[xformsnuke]:https://github.com/roubachof/Xamarin.Forms.Nuke
+[bindings]:https://docs.microsoft.com/en-us/xamarin/ios/platform/binding-swift/walkthrough
