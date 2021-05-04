@@ -2,7 +2,7 @@
 # https://docs.microsoft.com/en-us/xamarin/ios/platform/binding-swift/walkthrough
 
 echo "Define parameters"
-IOS_SDK_VERSION="14.0" # xcodebuild -showsdks
+IOS_SDK_VERSION="14.4" # xcodebuild -showsdks
 SWIFT_PROJECT_NAME="NukeProxy"
 SWIFT_PROJECT_PATH="$SWIFT_PROJECT_NAME.xcodeproj"
 SWIFT_BUILD_PATH="build"
