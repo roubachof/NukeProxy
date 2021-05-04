@@ -337,3 +337,7 @@ ASALocalRun/
 .vscode/
 build*.txt
 /*.txt
+
+build/
+Output/
+sharpie_output/
