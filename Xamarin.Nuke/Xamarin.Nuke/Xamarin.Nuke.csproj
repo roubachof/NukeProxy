@@ -46,11 +46,13 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\NukeProxy\Frameworks\Nuke.framework">
+    <NativeReference Include="..\..\Frameworks\Nuke.framework">
       <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
     </NativeReference>
-    <NativeReference Include="..\..\NukeProxy\build\Release-fat\NukeProxy.framework">
+    <NativeReference Include="..\..\build\Release-fat\NukeProxy.framework">
       <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
