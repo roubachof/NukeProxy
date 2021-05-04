@@ -14,7 +14,7 @@ import Nuke
 public class ImagePipeline : NSObject {
     
     @objc
-    public static var shared = ImagePipeline()
+    public static let shared = ImagePipeline()
     
     @objc
     public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) -> Void {
