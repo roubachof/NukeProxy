@@ -2,17 +2,18 @@
 # https://docs.microsoft.com/en-us/xamarin/ios/platform/binding-swift/walkthrough
 
 echo "Define parameters"
-IOS_SDK_VERSION="14.0" # xcodebuild -showsdks
+IOS_SDK_VERSION="14.4" # xcodebuild -showsdks
 SWIFT_PROJECT_NAME="NukeProxy"
 SWIFT_PROJECT_PATH="$SWIFT_PROJECT_NAME.xcodeproj"
 SWIFT_BUILD_PATH="build"
 SWIFT_OUTPUT_PATH="Output/NukeProxy"
-XAMARIN_BINDING_PATH="Xamarin.Nuke"
+XAMARIN_BINDING_PATH="sharpie_output"
+BUILD_ROOT="$(pwd)/$SWIFT_BUILD_PATH"
 
 echo "Build iOS framework for simulator and device"
 rm -Rf "$SWIFT_BUILD_PATH"
-xcodebuild -sdk iphonesimulator$IOS_SDK_VERSION -project "$SWIFT_PROJECT_PATH" -configuration Release
-xcodebuild -sdk iphoneos$IOS_SDK_VERSION -project "$SWIFT_PROJECT_PATH" -configuration Release
+xcodebuild -sdk iphonesimulator$IOS_SDK_VERSION -project "$SWIFT_PROJECT_PATH" -configuration Release -scheme "$SWIFT_PROJECT_NAME" SYMROOT="$BUILD_ROOT" ARCHS=x86_64
+xcodebuild -sdk iphoneos$IOS_SDK_VERSION -project "$SWIFT_PROJECT_PATH" -configuration Release -scheme "$SWIFT_PROJECT_NAME" SYMROOT="$BUILD_ROOT"
 
 echo "Create fat binaries for Release-iphoneos and Release-iphonesimulator configuration"
 echo "Copy one build as a fat framework"
@@ -29,7 +30,7 @@ lipo -info "$SWIFT_BUILD_PATH/Release-fat/$SWIFT_PROJECT_NAME.framework/$SWIFT_P
 
 echo "Copy fat frameworks to the output folder"
 rm -Rf "$SWIFT_OUTPUT_PATH"
-mkdir "$SWIFT_OUTPUT_PATH"
+mkdir -p "$SWIFT_OUTPUT_PATH"
 cp -Rf "$SWIFT_BUILD_PATH/Release-fat/$SWIFT_PROJECT_NAME.framework" "$SWIFT_OUTPUT_PATH"
 
 echo "Generating binding api definition and structs"
