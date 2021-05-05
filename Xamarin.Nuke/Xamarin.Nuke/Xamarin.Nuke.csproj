@@ -48,12 +48,12 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\Frameworks\Nuke.framework">
+    <NativeReference Include="..\..\build\Release-fat\NukeProxy.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    <NativeReference Include="..\..\build\Release-fat\NukeProxy.framework">
-      <Kind>Framework</Kind>
+    <NativeReference Include="..\..\build\Release-fat\Nuke.o">
+      <Kind>Static</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
