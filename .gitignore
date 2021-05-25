@@ -342,3 +342,4 @@ build/
 Output/
 sharpie_output/
 Cartfile.resolved
+Carthage
