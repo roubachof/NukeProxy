@@ -30,6 +30,9 @@ jobs:
         with:
           useConfigFile: true
 
+      - name: Carthage Build
+        run: sh carthage.sh update --use-xcframeworks
+
       - name: Build Fat Library
         run: sh build-fat.sh
 
