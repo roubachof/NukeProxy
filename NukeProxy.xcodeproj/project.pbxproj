@@ -7,12 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D81FA13264157DE00E5F9AE /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 7D81FA12264157DE00E5F9AE /* Nuke */; };
+		7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; };
+		7D013CDF265D5A2100454172 /* Nuke.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B08309D5241256530090FB75 /* NukeProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B08309D3241256530090FB75 /* NukeProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B08309E7241259650090FB75 /* NukeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08309E6241259650090FB75 /* NukeProxy.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7D013CE0265D5A2100454172 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7D013CDF265D5A2100454172 /* Nuke.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7D013CDD265D5A2100454172 /* Nuke.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Nuke.xcframework; path = Carthage/Build/Nuke.xcframework; sourceTree = "<group>"; };
 		B08309D0241256530090FB75 /* NukeProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NukeProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08309D3241256530090FB75 /* NukeProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NukeProxy.h; sourceTree = "<group>"; };
 		B08309D4241256530090FB75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -24,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D81FA13264157DE00E5F9AE /* Nuke in Frameworks */,
+				7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +77,7 @@
 		B08309DB241256A70090FB75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D013CDD265D5A2100454172 /* Nuke.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -87,6 +104,7 @@
 				B08309CC241256530090FB75 /* Sources */,
 				B08309CD241256530090FB75 /* Frameworks */,
 				B08309CE241256530090FB75 /* Resources */,
+				7D013CE0265D5A2100454172 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -94,7 +112,6 @@
 			);
 			name = NukeProxy;
 			packageProductDependencies = (
-				7D81FA12264157DE00E5F9AE /* Nuke */,
 			);
 			productName = NukeProxy;
 			productReference = B08309D0241256530090FB75 /* NukeProxy.framework */;
@@ -126,7 +143,6 @@
 			);
 			mainGroup = B08309C6241256530090FB75;
 			packageReferences = (
-				7D81FA11264157DE00E5F9AE /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = B08309D1241256530090FB75 /* Products */;
 			projectDirPath = "";
@@ -163,7 +179,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -229,7 +245,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -288,6 +304,7 @@
 		B08309D9241256530090FB75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -320,6 +337,7 @@
 		B08309DA241256530090FB75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -370,25 +388,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		7D81FA11264157DE00E5F9AE /* XCRemoteSwiftPackageReference "Nuke" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kean/Nuke.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.6.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7D81FA12264157DE00E5F9AE /* Nuke */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7D81FA11264157DE00E5F9AE /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = Nuke;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B08309C7241256530090FB75 /* Project object */;
 }
