@@ -57,3 +57,33 @@ public final class DataLoader: NSObject {
     }
 }
 
+@objc(Prefetcher)
+public final class Prefetcher: NSObject {
+ 
+    let prefetcher = ImagePrefetcher()
+    
+    @objc
+    public func startPrefetching(with: [URL]) {
+        prefetcher.startPrefetching(with: with)
+    }
+    
+    @objc
+    public func stopPrefetching(with: [URL]) {
+        prefetcher.stopPrefetching(with: with)
+    }
+    
+    @objc
+    public func stopPrefetching() {
+        prefetcher.stopPrefetching()
+    }
+    
+    @objc
+    public func pause() {
+        prefetcher.isPaused = true
+    }
+    
+    @objc
+    public func unPause() {
+        prefetcher.isPaused = false
+    }
+}
