@@ -19,7 +19,7 @@
     <tags>xamarin.ios ios nuke image caching glidex</tags>
 
     <description>
-Small wrapper around Nuke 9.6.0 (https://github.com/kean/Nuke/releases/tag/9.6.0) for Xamarin.iOS.
+Small wrapper around Nuke 9.6.1 (https://github.com/kean/Nuke/releases/tag/9.6.1) for Xamarin.iOS.
     </description>
 
     <dependencies>
