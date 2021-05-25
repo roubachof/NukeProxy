@@ -17,7 +17,7 @@ public class ImagePipeline : NSObject {
     public static let shared = ImagePipeline()
     
     @objc
-    public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) -> Void {
+    public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) {
         _ = Nuke.ImagePipeline.shared.loadImage(
             with: url,
             progress: nil,
@@ -27,6 +27,27 @@ public class ImagePipeline : NSObject {
                     onCompleted(response.image, "success")
                 case let .failure(error):
                     onCompleted(nil, error.localizedDescription)
+                }
+            }
+        )
+    }
+    
+    @objc
+    public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+        let options = ImageLoadingOptions(placeholder:placeholder, failureImage: errorImage)
+        Nuke.loadImage(with: url, options: options, into: into)
+    }
+    
+    @objc
+    public func loadData(url: URL, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
+        _ = Nuke.ImagePipeline.shared.loadData(
+            with: url,
+            completion: { result in
+                switch result {
+                case let .success(response):
+                    onCompleted(response.data, response.response)
+                case .failure(_):
+                    onCompleted(nil, nil)
                 }
             }
         )
