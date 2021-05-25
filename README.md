@@ -13,11 +13,15 @@ NuGet:
 
 Make sure to install carthage first. This can be done through Homebrew:
 
-> brew install carthage
+```
+brew install carthage
+```
 
 Getting Nuke from carthage:
 
-> sh carthage.sh update --use-xcframeworks
+```
+sh carthage.sh update --use-xcframeworks
+```
 
 ## Exposing more API
 
