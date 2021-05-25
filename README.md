@@ -9,6 +9,16 @@ NuGet:
 
 > Install-Package Xamarin.Nuke
 
+## Setting up locally
+
+Make sure to install carthage first. This can be done through Homebrew:
+
+> brew install carthage
+
+Getting Nuke from carthage:
+
+> sh carthage.sh update --use-xcframeworks
+
 ## Exposing more API
 
 Open the NukeProxy.xcodeproj in Xcode and add more code to `NukeProxy.swift`.
