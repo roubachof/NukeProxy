@@ -26,9 +26,13 @@ jobs:
       with:
         workflow: build.yml
         branch: master
-      
+
     - shell: pwsh
       name: Publish NuGet Package
-      env:
-        API_KEY: ${{ secrets.NUGET_SHARPNADO_KEY }}
-      run: dotnet nuget push **/*.nupkg -k "$env:API_KEY" -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_SHARPNADO_KEY }} -s https://api.nuget.org/v3/index.json
+
+    - shell: pwsh
+      name: Publish NuGet Package (GitHub)
+      run: |
+        dotnet nuget add source "https://nuget.pkg.github.com/roubachof/index.json" -n "Github" -u roubachof -p ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push **/*.nupkg -s "Github" -n true
