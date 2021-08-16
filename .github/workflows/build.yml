@@ -39,6 +39,11 @@ jobs:
       - name: Build Binding Library
         run: msbuild Xamarin.Nuke/Xamarin.Nuke.sln /p:Configuration=Release
 
+      - script: |
+          sed 's/\$branch\$/$(Build.SourceBranchName)/g' Xamarin.Nuke.nuspec
+          sed 's/\$commit\$/$(Build.SourceVersion)/g' Xamarin.Nuke.nuspec
+        name: Patch nuspec
+
       - name: Create NuGet Package
         run: nuget pack -Version ${{ steps.gitversion.outputs.nuGetVersionV2 }}
 

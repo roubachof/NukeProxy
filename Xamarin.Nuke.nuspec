@@ -15,6 +15,7 @@
     <icon>images\nuke_small.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
+    <repository type="git" url="https://github.com/roubachof/NukeProxy.git" branch="$branch$" commit="$commit$" />
     <summary>Small wrapper around Nuke image library</summary>
 
     <tags>xamarin.ios ios nuke image caching glidex</tags>
