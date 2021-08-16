@@ -40,8 +40,8 @@ jobs:
         run: msbuild Xamarin.Nuke/Xamarin.Nuke.sln /p:Configuration=Release
 
       - run:
-          sed 's/\$branch\$/$BRANCH/g' Xamarin.Nuke.nuspec
-          sed 's/\$commit\$/$SHA/g' Xamarin.Nuke.nuspec
+          sed -i.bak "s|%branch%|$BRANCH|g" Xamarin.Nuke.nuspec
+          sed -i.bak "s|%commit%|$SHA|g' Xamarin.Nuke.nuspec
         name: Patch nuspec
         env:
           BRANCH: ${{ github.ref }}
