@@ -11,8 +11,7 @@
     <owners>roubachof,cheesebaron</owners>
     <license type="file">LICENSE</license>
     <projectUrl>https://github.com/roubachof/Xamarin.Nuke</projectUrl>
-    <repository type="git" url="https://github.com/roubachof/NukeProxy.git"/>
-
+    <repositoryUrl>https://github.com/roubachof/Xamarin.Nuke</repositoryUrl>
     <icon>images\nuke_small.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
