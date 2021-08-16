@@ -15,12 +15,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
     <repository type="git" url="https://github.com/roubachof/NukeProxy.git" branch="$branch$" commit="$commit$" />
+
     <summary>Small wrapper around Nuke image library</summary>
 
     <tags>xamarin.ios ios nuke image caching glidex</tags>
 
     <description>
-Small wrapper around Nuke 9.6.1 (https://github.com/kean/Nuke/releases/tag/9.6.1) for Xamarin.iOS.
+Small wrapper around Nuke 10.3.1 (https://github.com/kean/Nuke/releases/tag/10.3.1) for Xamarin.iOS.
     </description>
 
     <dependencies>
