@@ -41,7 +41,7 @@ jobs:
 
       - run: |
           sed -i.bak "s|%branch%|$BRANCH|g" Xamarin.Nuke.nuspec
-          sed -i.bak "s|%commit%|$SHA|g' Xamarin.Nuke.nuspec
+          sed -i.bak "s|%commit%|$SHA|g" Xamarin.Nuke.nuspec
         name: Patch nuspec
         env:
           BRANCH: ${{ github.ref }}
