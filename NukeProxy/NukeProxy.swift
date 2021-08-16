@@ -39,21 +39,28 @@ public class ImagePipeline : NSObject {
     }
     
     @objc
-    public func loadImage(url: URL, key: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
-        let request = ImageRequest(
-            url: url,
-            options: ImageRequestOptions(cacheKey: key)
-        )
-        
+    public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
         
-        Nuke.loadImage(with: request, options: options, into: into)
+        Nuke.loadImage(with: ImageRequest(
+            url: url,
+            userInfo: [.imageIdKey: imageIdKey]
+        ), options: options, into: into)
     }
     
     @objc
     public func loadData(url: URL, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
+        loadData(url: url, imageIdKey: nil, reloadIgnoringCachedData: false, onCompleted: onCompleted)
+    }
+    
+    @objc
+    public func loadData(url: URL, imageIdKey: String?, reloadIgnoringCachedData: Bool, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         _ = Nuke.ImagePipeline.shared.loadData(
-            with: url,
+            with: ImageRequest(
+                url: url,
+                options: reloadIgnoringCachedData ? [.reloadIgnoringCachedData] : [],
+                userInfo: [.imageIdKey: imageIdKey]
+            ),
             completion: { result in
                 switch result {
                 case let .success(response):
