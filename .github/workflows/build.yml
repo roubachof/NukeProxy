@@ -40,8 +40,8 @@ jobs:
         run: msbuild Xamarin.Nuke/Xamarin.Nuke.sln /p:Configuration=Release
 
       - run: 
-          sed 's/\$branch\$/$(Build.SourceBranchName)/g' Xamarin.Nuke.nuspec
-          sed 's/\$commit\$/$(Build.SourceVersion)/g' Xamarin.Nuke.nuspec
+          sed 's/\$branch\$/$GITHUB_REF/g' Xamarin.Nuke.nuspec
+          sed 's/\$commit\$/$GITHUB_SHA/g' Xamarin.Nuke.nuspec
         name: Patch nuspec
 
       - name: Create NuGet Package
