@@ -39,7 +39,7 @@ jobs:
       - name: Build Binding Library
         run: msbuild Xamarin.Nuke/Xamarin.Nuke.sln /p:Configuration=Release
 
-      - script: |
+      - run: 
           sed 's/\$branch\$/$(Build.SourceBranchName)/g' Xamarin.Nuke.nuspec
           sed 's/\$commit\$/$(Build.SourceVersion)/g' Xamarin.Nuke.nuspec
         name: Patch nuspec
