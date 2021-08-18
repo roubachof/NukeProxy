@@ -8,24 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; };
-		7D013CDF265D5A2100454172 /* Nuke.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B08309D5241256530090FB75 /* NukeProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B08309D3241256530090FB75 /* NukeProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B08309E7241259650090FB75 /* NukeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08309E6241259650090FB75 /* NukeProxy.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7D013CE0265D5A2100454172 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7D013CDF265D5A2100454172 /* Nuke.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7D013CDD265D5A2100454172 /* Nuke.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Nuke.xcframework; path = Carthage/Build/Nuke.xcframework; sourceTree = "<group>"; };
@@ -104,7 +89,6 @@
 				B08309CC241256530090FB75 /* Sources */,
 				B08309CD241256530090FB75 /* Frameworks */,
 				B08309CE241256530090FB75 /* Resources */,
-				7D013CE0265D5A2100454172 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
