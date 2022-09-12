@@ -41,25 +41,11 @@ jobs:
       - name: Build NukeProxy Native Library
         run: sh build.sh
 
-      - name: Build Binding Legacy Library
-        run: msbuild Xamarin.Nuke/Xamarin.Nuke/Xamarin.Nuke.csproj /p:Configuration=Release
-
-      - name: Build Binding NET6 Library
-        run: dotnet build Xamarin.Nuke/Xamarin.Nuke.NET6/Xamarin.Nuke.NET6.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
-
-      - run: |
-          sed -i.bak "s|%branch%|$BRANCH|g" Xamarin.Nuke.nuspec
-          sed -i.bak "s|%commit%|$SHA|g" Xamarin.Nuke.nuspec
-        name: Patch nuspec
-        env:
-          BRANCH: ${{ github.ref }}
-          SHA: ${{ github.sha }}
-
-      - name: Create NuGet Package
-        run: nuget pack -Version ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+      - name: Build Binding Library
+        run: dotnet build Xamarin.Nuke/Xamarin.Nuke/Xamarin.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
           name: NuGet
-          path: '*.nupkg'
+          path: '**/*.nupkg'

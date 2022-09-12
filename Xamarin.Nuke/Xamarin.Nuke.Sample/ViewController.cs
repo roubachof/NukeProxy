@@ -23,6 +23,7 @@ namespace Xamarin.Nuke.Sample
             {
                 TranslatesAutoresizingMaskIntoConstraints = false
             };
+            
             Add(image);
 
             ImagePipeline.Shared.LoadImageWithUrl(
