@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-ios</TargetFramework>
+        <RootNamespace>Xamarin.Nuke.Sample</RootNamespace>
+        <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
+        <OutputType>Exe</OutputType>
+        <SupportedOSPlatformVersion>14.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="SkiaSharp" Version="2.88.2" />
+        <PackageReference Include="SkiaSharp.Views" Version="2.88.2" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Xamarin.Nuke.NET6\Xamarin.Nuke.NET6.csproj" />
+    </ItemGroup>
+    
+</Project>

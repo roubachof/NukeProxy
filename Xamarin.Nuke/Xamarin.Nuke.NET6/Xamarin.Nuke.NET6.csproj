@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-ios</TargetFramework>
+    <IsBindingProject>true</IsBindingProject>
+    <NoBindingEmbedding>true</NoBindingEmbedding>
+    <RootNamespace>Xamarin.Nuke</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApiDefinition.cs" />
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="Structs.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="..\..\NukeProxy.xcframework">
+    </ObjcBindingNativeLibrary>
+    <ObjcBindingNativeLibrary Include="..\..\Carthage\Build\Nuke.xcframework">
+    </ObjcBindingNativeLibrary>
+  </ItemGroup>
+  
+</Project>

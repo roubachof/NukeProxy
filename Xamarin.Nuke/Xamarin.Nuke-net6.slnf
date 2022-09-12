@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "Xamarin.Nuke.sln",
+    "projects": [
+      "Xamarin.Nuke.NET6\\Xamarin.Nuke.NET6.csproj",
+      "Xamarin.Nuke.SampleNET6\\Xamarin.Nuke.SampleNET6.csproj"
+    ]
+  }
+}

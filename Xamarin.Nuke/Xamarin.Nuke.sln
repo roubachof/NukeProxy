@@ -1,15 +1,19 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke", "Xamarin.Nuke\Xamarin.Nuke.csproj", "{3569C7FD-7FE0-452F-A95E-52A57861A42D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke.NET6", "Xamarin.Nuke.NET6\Xamarin.Nuke.NET6.csproj", "{3569C7FD-7FE0-452F-A95E-52A57861A42D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke.Sample", "Xamarin.Nuke.Sample\Xamarin.Nuke.Sample.csproj", "{7177EAAC-5341-459A-9F53-EBC78F27F842}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke.SampleNET6", "Xamarin.Nuke.SampleNET6\Xamarin.Nuke.SampleNET6.csproj", "{7177EAAC-5341-459A-9F53-EBC78F27F842}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{9B85792F-7415-4F1E-88DB-2DF3E0FC9C23}"
 	ProjectSection(SolutionItems) = preProject
 		..\Cartfile = ..\Cartfile
 		..\Xamarin.Nuke.nuspec = ..\Xamarin.Nuke.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke", "Xamarin.Nuke\Xamarin.Nuke.csproj", "{3569C7FD-7FE0-452F-A95E-52A57861A42D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke.Sample", "Xamarin.Nuke.Sample\Xamarin.Nuke.Sample.csproj", "{7177EAAC-5341-459A-9F53-EBC78F27F842}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +46,10 @@ Global
 		{7177EAAC-5341-459A-9F53-EBC78F27F842}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{7177EAAC-5341-459A-9F53-EBC78F27F842}.Debug|iPhone.Build.0 = Debug|iPhone
 		{7177EAAC-5341-459A-9F53-EBC78F27F842}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7177EAAC-5341-459A-9F53-EBC78F27F842}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{7177EAAC-5341-459A-9F53-EBC78F27F842}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{7177EAAC-5341-459A-9F53-EBC78F27F842}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
