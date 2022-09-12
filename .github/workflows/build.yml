@@ -25,7 +25,7 @@ jobs:
           dotnet-version: 6.0.x
    
       - name: Install Workloads
-        run: dotnet workload install ios
+        run: dotnet workload install ios maccatalyst
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
