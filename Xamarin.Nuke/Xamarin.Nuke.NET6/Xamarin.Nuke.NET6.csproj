@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0-ios</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
-    <NoBindingEmbedding>true</NoBindingEmbedding>
+    <NoBindingEmbedding>false</NoBindingEmbedding>
     <RootNamespace>Xamarin.Nuke</RootNamespace>
   </PropertyGroup>
 
@@ -13,10 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\NukeProxy.xcframework">
-    </ObjcBindingNativeLibrary>
-    <ObjcBindingNativeLibrary Include="..\..\Carthage\Build\Nuke.xcframework">
-    </ObjcBindingNativeLibrary>
+    <NativeReference Include="..\..\NukeProxy.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\..\Carthage\Build\Nuke.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
   </ItemGroup>
   
 </Project>
