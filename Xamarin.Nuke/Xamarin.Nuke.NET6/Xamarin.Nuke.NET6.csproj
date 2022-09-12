@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <NativeReference Include="..\..\NukeProxy.xcframework">
+    <NativeReference Include="..\..\Output\NukeProxy.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
