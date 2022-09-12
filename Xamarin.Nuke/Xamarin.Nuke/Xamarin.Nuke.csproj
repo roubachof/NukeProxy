@@ -43,19 +43,17 @@
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\Output\build\Release-fat\NukeProxy.framework">
+    <NativeLibrary Include="..\..\Output\NukeProxy.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="..\..\Output\build\Release-fat\Nuke.framework">
+    </NativeLibrary>
+    <NativeLibrary Include="..\..\Carthage\Build\Nuke.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
-    </NativeReference>
+    </NativeLibrary>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

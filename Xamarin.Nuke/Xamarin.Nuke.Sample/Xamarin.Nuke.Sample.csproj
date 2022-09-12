@@ -15,6 +15,19 @@
         <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
         <ProvisioningType>automatic</ProvisioningType>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Any CPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchArch>x86_64</MtouchArch>
+        <MtouchLink>None</MtouchLink>
+        <MtouchDebug>true</MtouchDebug>
+        <LangVersion>8.0</LangVersion>
+    </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
@@ -77,10 +90,10 @@
     <ItemGroup>
       <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
       <PackageReference Include="SkiaSharp">
-        <Version>2.80.2</Version>
+        <Version>2.88.2</Version>
       </PackageReference>
       <PackageReference Include="SkiaSharp.Views">
-        <Version>2.80.2</Version>
+        <Version>2.88.2</Version>
       </PackageReference>
     </ItemGroup>
     <ItemGroup>
