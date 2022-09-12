@@ -8,6 +8,12 @@
         <SupportedOSPlatformVersion>14.5</SupportedOSPlatformVersion>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="SkiaSharp" Version="2.88.2" />
         <PackageReference Include="SkiaSharp.Views" Version="2.88.2" />
