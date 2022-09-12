@@ -27,7 +27,7 @@ Small wrapper around Nuke 10.3.1 (https://github.com/kean/Nuke/releases/tag/10.3
     <dependencies>
       <group targetFramework="Xamarin.iOS10">
       </group>
-      <group targetFramework="net6.0-ios">
+      <group targetFramework="net6.0-ios13.6">
       </group>
     </dependencies>
 
@@ -38,8 +38,8 @@ Small wrapper around Nuke 10.3.1 (https://github.com/kean/Nuke/releases/tag/10.3
     <file src="Xamarin.Nuke\Xamarin.Nuke\bin\Release\XamarinNuke.dll" target="lib\Xamarin.iOS10\XamarinNuke.dll" />
     <file src="Xamarin.Nuke\Xamarin.Nuke\bin\Release\XamarinNuke.pdb" target="lib\Xamarin.iOS10\XamarinNuke.pdb" />
 
-    <file src="Xamarin.Nuke\Xamarin.NukeNET6\bin\Release\XamarinNuke.dll" target="lib\net6.0-ios\XamarinNuke.dll" />
-    <file src="Xamarin.Nuke\Xamarin.NukeNET6\bin\Release\XamarinNuke.pdb" target="lib\net6.0-ios\XamarinNuke.pdb" />
+    <file src="Xamarin.Nuke\Xamarin.Nuke.NET6\bin\Release\net6.0-ios\Xamarin.Nuke.NET6.dll" target="lib\net6.0-ios13.6\Xamarin.Nuke.NET6.dll" />
+    <file src="Xamarin.Nuke\Xamarin.Nuke.NET6\bin\Release\net6.0-ios\Xamarin.Nuke.NET6.pdb" target="lib\net6.0-ios13.6\Xamarin.Nuke.NET6.pdb" />
 
     <file src="nuke_small.png" target="images\" />
 
