@@ -42,7 +42,7 @@ jobs:
         run: sh build.sh
 
       - name: Build Binding Library
-        run: dotnet build Xamarin.Nuke/Xamarin.Nuke/Xamarin.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
+        run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.3

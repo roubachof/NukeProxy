@@ -1,8 +1,7 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using UIKit;
 
-namespace NewSingleViewTemplate
+namespace Sample
 {
     [Register("SceneDelegate")]
     public class SceneDelegate : UIResponder, IUIWindowSceneDelegate

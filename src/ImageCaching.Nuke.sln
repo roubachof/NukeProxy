@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke", "Xamarin.Nuke\Xamarin.Nuke.csproj", "{3569C7FD-7FE0-452F-A95E-52A57861A42D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCaching.Nuke", "ImageCaching.Nuke\ImageCaching.Nuke.csproj", "{3569C7FD-7FE0-452F-A95E-52A57861A42D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuke.Sample", "Xamarin.Nuke.Sample\Xamarin.Nuke.Sample.csproj", "{7177EAAC-5341-459A-9F53-EBC78F27F842}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{7177EAAC-5341-459A-9F53-EBC78F27F842}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,11 @@
-﻿using Foundation;
-using System;
-using UIKit;
-using SkiaSharp.Views.iOS;
+﻿using System;
+using Foundation;
 using SkiaSharp;
+using SkiaSharp.Views.iOS;
+using UIKit;
+using Xamarin.Nuke;
 
-namespace Xamarin.Nuke.Sample
+namespace Sample
 {
     public partial class ViewController : UIViewController
     {
