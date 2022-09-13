@@ -24,17 +24,18 @@
       <MtouchVerbosity></MtouchVerbosity>
       <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     </PropertyGroup>
+    
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
       <MtouchLink>SdkOnly</MtouchLink>
     </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="SkiaSharp" Version="2.88.2" />
         <PackageReference Include="SkiaSharp.Views" Version="2.88.2" />
-        <PackageReference Include="Xamarin.Nuke" Version="1.0.16-pullrequest0007-0019" />
     </ItemGroup>
     
-<!--    <ItemGroup>-->
-<!--      <ProjectReference Include="..\Xamarin.Nuke.NET6\Xamarin.Nuke.csproj" />-->
-<!--    </ItemGroup>-->
+    <ItemGroup>
+      <ProjectReference Include="..\ImageCaching.Nuke\ImageCaching.Nuke.csproj" />
+    </ItemGroup>
     
 </Project>
