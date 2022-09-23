@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-ios</TargetFramework>
+        <RootNamespace>Sample</RootNamespace>
+        <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
+        <OutputType>Exe</OutputType>
+        <SupportedOSPlatformVersion>14.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <IntermediateOutputPath>obj\Debug</IntermediateOutputPath>
+      <DebugSymbols>false</DebugSymbols>
+      <DebugType></DebugType>
+      <OutputPath>bin\Debug</OutputPath>
+      <DefineConstants></DefineConstants>
+      <WarningLevel>4</WarningLevel>
+      <MtouchLink>SdkOnly</MtouchLink>
+      <NoWarn></NoWarn>
+      <NoStdLib>false</NoStdLib>
+      <PlatformTarget>anycpu</PlatformTarget>
+      <DeviceSpecificBuild>false</DeviceSpecificBuild>
+      <_BundlerDebug>false</_BundlerDebug>
+      <MtouchVerbosity></MtouchVerbosity>
+      <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="SkiaSharp" Version="2.88.2" />
+        <PackageReference Include="SkiaSharp.Views" Version="2.88.2" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\ImageCaching.Nuke\ImageCaching.Nuke.csproj" />
+    </ItemGroup>
+    
+</Project>

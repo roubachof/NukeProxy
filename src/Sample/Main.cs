@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Xamarin.Nuke.Sample
+namespace Sample
 {
     public class Application
     {

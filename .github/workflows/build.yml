@@ -11,13 +11,21 @@ on:
 
 jobs:
   build:
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+   
+      - name: Install Workloads
+        run: dotnet workload install ios maccatalyst
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
@@ -30,28 +38,14 @@ jobs:
         with:
           useConfigFile: true
 
-      - name: Carthage Build
-        run: sh carthage.sh update --use-xcframeworks
-
-      - name: Build Fat Library
-        run: sh build-fat.sh
+      - name: Build NukeProxy Native Library
+        run: sh build.sh
 
       - name: Build Binding Library
-        run: msbuild Xamarin.Nuke/Xamarin.Nuke.sln /p:Configuration=Release
-
-      - run: |
-          sed -i.bak "s|%branch%|$BRANCH|g" Xamarin.Nuke.nuspec
-          sed -i.bak "s|%commit%|$SHA|g" Xamarin.Nuke.nuspec
-        name: Patch nuspec
-        env:
-          BRANCH: ${{ github.ref }}
-          SHA: ${{ github.sha }}
-
-      - name: Create NuGet Package
-        run: nuget pack -Version ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
           name: NuGet
-          path: '*.nupkg'
+          path: '**/*.nupkg'
