@@ -17,7 +17,7 @@ public class ImagePipeline : NSObject {
     public static let shared = ImagePipeline()
     
     @objc
-    public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) {
+    public func loadImage(url: URL?, onCompleted: @escaping (UIImage?, String) -> Void) {
         _ = Nuke.ImagePipeline.shared.loadImage(
             with: url,
             progress: nil,
@@ -33,13 +33,13 @@ public class ImagePipeline : NSObject {
     }
     
     @objc
-    public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+    public func loadImage(url: URL?, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
         let options = ImageLoadingOptions(placeholder:placeholder, failureImage: errorImage)
         Nuke.loadImage(with: url, options: options, into: into)
     }
     
     @objc
-    public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+    public func loadImage(url: URL?, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
         
         Nuke.loadImage(with: ImageRequest(
@@ -49,12 +49,12 @@ public class ImagePipeline : NSObject {
     }
     
     @objc
-    public func loadData(url: URL, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
+    public func loadData(url: URL?, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         loadData(url: url, imageIdKey: nil, reloadIgnoringCachedData: false, onCompleted: onCompleted)
     }
     
     @objc
-    public func loadData(url: URL, imageIdKey: String?, reloadIgnoringCachedData: Bool, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
+    public func loadData(url: URL?, imageIdKey: String?, reloadIgnoringCachedData: Bool, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         _ = Nuke.ImagePipeline.shared.loadData(
             with: ImageRequest(
                 url: url,
