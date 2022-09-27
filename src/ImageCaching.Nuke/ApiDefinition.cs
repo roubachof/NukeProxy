@@ -42,25 +42,25 @@ namespace Xamarin.Nuke
 		[Export ("shared", ArgumentSemantic.Strong)]
 		ImagePipeline Shared { get; }
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
+		// -(void)loadImageWithUrl:(NSURL * _Nullable)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
 		[Export ("loadImageWithUrl:onCompleted:")]
-		void LoadImageWithUrl (NSUrl url, Action<UIImage, NSString> onCompleted);
+		void LoadImageWithUrl ([NullAllowed] NSUrl url, Action<UIImage, NSString> onCompleted);
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		// -(void)loadImageWithUrl:(NSURL * _Nullable)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
 		[Export ("loadImageWithUrl:placeholder:errorImage:into:")]
-		void LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+		void LoadImageWithUrl ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		// -(void)loadImageWithUrl:(NSURL * _Nullable)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
 		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:")]
-		void LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+		void LoadImageWithUrl ([NullAllowed] NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
+		// -(void)loadDataWithUrl:(NSURL * _Nullable)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
 		[Export ("loadDataWithUrl:onCompleted:")]
-		void LoadDataWithUrl (NSUrl url, Action<NSData, NSUrlResponse> onCompleted);
+		void LoadDataWithUrl ([NullAllowed] NSUrl url, Action<NSData, NSUrlResponse> onCompleted);
 
-		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
+		// -(void)loadDataWithUrl:(NSURL * _Nullable)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
 		[Export ("loadDataWithUrl:imageIdKey:reloadIgnoringCachedData:onCompleted:")]
-		void LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
+		void LoadDataWithUrl ([NullAllowed] NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
 	}
 
 	// @interface Prefetcher : NSObject
