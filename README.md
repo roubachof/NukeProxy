@@ -5,6 +5,16 @@ This proxy provides enough API for [Xamarin.Forms.Nuke][xformsnuke] to function.
 
 ## Installation
 
+New! There is now a .net 6 version of the proxy targeting `ios` and `mac catalyst`.
+
+### .Net 6 ios and macos
+
+Nuget:
+
+> Install-Package ImageCaching.Nuke
+
+### Xamarin.Forms
+
 NuGet:
 
 > Install-Package Xamarin.Nuke
