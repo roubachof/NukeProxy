@@ -10,11 +10,41 @@ import Foundation
 import UIKit
 import Nuke
 
+
 @objc(ImagePipeline)
 public class ImagePipeline : NSObject {
     
     @objc
     public static let shared = ImagePipeline()
+    
+    @objc
+    public static func setupWithDataCache(){
+        Nuke.ImagePipeline.shared = Nuke.ImagePipeline(configuration: .withDataCache)
+    }
+    
+    @objc
+    public func isCached(for url: URL) -> Bool {
+        return Nuke.ImagePipeline.shared.cache.containsCachedImage(for: ImageRequest(url: url))
+    }
+    
+    @objc
+    public func getCachedImage(for url: URL) -> UIImage? {
+        guard let cached = Nuke.ImagePipeline.shared.cache.cachedImage(for: ImageRequest(url: url)) else {
+            return nil
+        }
+        
+        return cached.image
+    }
+    
+    @objc
+    public func removeImageFromCache(for url: URL) {
+        Nuke.ImagePipeline.shared.cache.removeCachedData(for: ImageRequest(url: url))
+    }
+    
+    @objc
+    public func removeAllCaches() {
+        Nuke.ImagePipeline.shared.cache.removeAll()
+    }
     
     @objc
     public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) {
@@ -31,6 +61,7 @@ public class ImagePipeline : NSObject {
             }
         )
     }
+    
     
     @objc
     public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
@@ -100,7 +131,7 @@ public final class DataLoader: NSObject {
 @objc(Prefetcher)
 public final class Prefetcher: NSObject {
  
-    let prefetcher = ImagePrefetcher()
+    let prefetcher: ImagePrefetcher = ImagePrefetcher()
     
     @objc
     public func startPrefetching(with: [URL]) {
