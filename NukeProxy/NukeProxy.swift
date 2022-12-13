@@ -131,7 +131,7 @@ public final class DataLoader: NSObject {
 @objc(Prefetcher)
 public final class Prefetcher: NSObject {
  
-    let prefetcher: ImagePrefetcher = ImagePrefetcher()
+    let prefetcher = ImagePrefetcher()
     
     @objc
     public func startPrefetching(with: [URL]) {
