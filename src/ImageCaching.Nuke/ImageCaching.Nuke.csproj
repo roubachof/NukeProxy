@@ -73,5 +73,46 @@
       <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
+
+  <!-- hack from https://github.com/dotnet/maui/issues/10989 -->
+  <PropertyGroup>
+    <!-- Properties used to strip bitcode from frameworks when using Visual Studio for Mac -->
+    <_StripBitcodeFromFrameworksMasterAfterTargets Condition="'$(OS)'=='Unix'">_ExpandNativeReferences</_StripBitcodeFromFrameworksMasterAfterTargets>
+    <_StripBitcodeFromFrameworksMasterDependsOnTargets Condition="'$(OS)'=='Unix'">_StripBitcodeFromFrameworksOnMac</_StripBitcodeFromFrameworksMasterDependsOnTargets>
+
+    <!-- Properties used to strip bitcode from frameworks when using Visual Studio for Windows -->
+    <_StripBitcodeFromFrameworksMasterAfterTargets Condition="'$(OS)'!='Unix'">_ComputeFrameworkFilesToPublish</_StripBitcodeFromFrameworksMasterAfterTargets>
+    <_StripBitcodeFromFrameworksMasterDependsOnTargets Condition="'$(OS)'!='Unix'">_StripBitcodeFromFrameworksOnWindows</_StripBitcodeFromFrameworksMasterDependsOnTargets>
+  </PropertyGroup>
+
+  <Target Name="_StripBitcodeFromFrameworksMasterTarget"
+          Condition="'$(_StripBitcodeFromFrameworksMasterDependsOnTargets)'!='' AND @(_FrameworkNativeReference->Count()) != 0"
+          AfterTargets="$(_StripBitcodeFromFrameworksMasterAfterTargets)"
+          DependsOnTargets="$(_StripBitcodeFromFrameworksMasterDependsOnTargets)" />
+
+  <Target Name="_StripBitcodeFromFrameworksOnMac"
+          Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True') AND '$(_SdkIsSimulator)'=='False'">
+
+    <!-- Find the bitcode_strip command -->
+    <Exec Command="xcrun -find bitcode_strip" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="_BitcodeStripCommand" />
+    </Exec>
+
+    <!-- Strip the bitcode from frameworks -->
+    <Exec Command="$(_BitcodeStripCommand) %(_FrameworkNativeReference.Identity) -r -o %(_FrameworkNativeReference.Identity)" />
+  </Target>
+
+  <Target Name="_StripBitcodeFromFrameworksOnWindows"
+          Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True') AND '$(_SdkIsSimulator)'=='False' AND '$(IsMacEnabled)'=='true'">
+
+    <!-- Strip the bitcode from frameworks -->
+    <Exec SessionId="$(BuildSessionId)"
+          Command="&quot;%24(xcrun -find bitcode_strip)&quot; %(_FrameworkNativeReference.Identity) -r -o %(_FrameworkNativeReference.Identity)" />
+
+    <CopyFileFromBuildServer
+            SessionId="$(BuildSessionId)"
+            File="%(_FrameworkNativeReference.Identity)"
+            TargetFile="%(_FrameworkNativeReference.Identity)" />
+  </Target>
   
 </Project>
