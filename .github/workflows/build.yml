@@ -51,6 +51,7 @@ jobs:
         run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Upload a Other Artifacts
+        if: always()
         uses: actions/upload-artifact@v2.2.3
         with:
           name: Other
