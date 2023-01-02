@@ -44,12 +44,6 @@ jobs:
         with:
           useConfigFile: true
 
-      - name: Checkout carthage
-        run: sh carthage.sh checkout
-
-      - name: Disable SwiftLint in Nuke
-        run: echo '' > Carthage/Checkouts/Nuke/Scripts/lint.sh
-
       - name: Build Nuke XCFramework
         run: sh carthage.sh update --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
 
