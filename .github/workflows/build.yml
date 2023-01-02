@@ -19,6 +19,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: "Select the latest stable Xcode"
+        uses: devbotsxyz/xcode-select@v1
+        with:
+          version: "14"
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
