@@ -54,7 +54,7 @@ jobs:
           echo 'exit 0' > Carthage/Checkouts/Nuke/Scripts/validate.sh
 
       - name: Build Nuke XCFramework
-        run: sh carthage.sh update --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
+        run: sh carthage.sh build --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
 
       - name: Build NukeProxy XCFramework
         run: |
