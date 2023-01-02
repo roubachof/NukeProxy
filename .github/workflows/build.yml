@@ -21,6 +21,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - run: |
+          mkdir artifacts
+        name: Create Artifacts Directory
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -46,7 +50,13 @@ jobs:
       - name: Build Binding Library
         run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
-      - name: Upload a Build Artifact
+      - name: Upload a Other Artifacts
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: Other
+          path: 'artifacts/**/*'
+
+      - name: Upload a NuGet Artifacts
         uses: actions/upload-artifact@v2.2.3
         with:
           name: NuGet
