@@ -44,8 +44,21 @@ jobs:
         with:
           useConfigFile: true
 
-      - name: Build NukeProxy Native Library
-        run: sh build.sh
+      - name: Checkout carthage
+        run: sh carthage.sh checkout
+
+      - name: Disable SwiftLint in Nuke
+        run: echo '' > Carthage/Checkouts/Nuke/Scripts/lint.sh
+
+      - name: Build Nuke XCFramework
+        run: sh carthage.sh update --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
+
+      - name: Build NukeProxy XCFramework
+        run: |
+          xcodebuild archive -sdk iphoneos -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphoneos SKIP_INSTALL=NO
+          xcodebuild archive -sdk iphonesimulator -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphonesimulator SKIP_INSTALL=NO
+
+          xcodebuild -create-xcframework -framework Output/Output-iphonesimulator.xcarchive/Products/Library/Frameworks/NukeProxy.framework -framework Output/Output-iphoneos.xcarchive/Products/Library/Frameworks/NukeProxy.framework -output Output/NukeProxy.xcframework
 
       - name: Build Binding Library
         run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
