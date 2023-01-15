@@ -39,7 +39,7 @@ Open the NukeProxy.xcodeproj in Xcode and add more code to `NukeProxy.swift`.
 
 Make sure to annotate correctly with `@objc`. Refer to the other code and [Xamarin.iOS Swift Bindings][bindings]. When done adding more code, ensure project builds:
 
-1. Run `sh build-fat.sh` from commandline (make sure you have [the latest Sharpie][sharpie] installed)
+1. Run `sh build-fat.sh` from commandline (make sure you have [the latest Sharpie](https://aka.ms/objective-sharpie) installed)
 2. Copy the new definitions from the `sharpie_output` folder into the `Xamarin.Nuke` C# project
 3. Adjust the definitions and ensure the project builds
 4. Create a PR to this repository
