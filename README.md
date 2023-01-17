@@ -47,4 +47,4 @@ Make sure to annotate correctly with `@objc`. Refer to the other code and [Xamar
 [nuke]:https://github.com/kean/Nuke
 [xformsnuke]:https://github.com/roubachof/Xamarin.Forms.Nuke
 [bindings]:https://docs.microsoft.com/en-us/xamarin/ios/platform/binding-swift/walkthrough
-[sharpie]:https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/binding/objective-sharpie/releases?context=xamarin/ios
+[sharpie]:https://aka.ms/objective-sharpie
