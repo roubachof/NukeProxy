@@ -14,10 +14,11 @@ namespace Xamarin.Nuke
 		[Export ("shared", ArgumentSemantic.Strong)]
 		DataLoader Shared { get; }
 
-		// -(void)removeAllCachedResponses;
-		[Export ("removeAllCachedResponses")]
-		void RemoveAllCachedResponses ();
-	}
+        // @property (nonatomic, class, readonly, strong) NSURLCache * _Nonnull sharedUrlCache;
+        [Static]
+        [Export("sharedUrlCache", ArgumentSemantic.Strong)]
+        NSUrlCache SharedUrlCache { get; }
+    }
 
 	// @interface ImageCache : NSObject
 	[BaseType (typeof(NSObject))]

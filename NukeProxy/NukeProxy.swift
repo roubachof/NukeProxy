@@ -92,9 +92,7 @@ public final class DataLoader: NSObject {
     public static let shared = DataLoader()
     
     @objc
-    public func removeAllCachedResponses() {
-        Nuke.DataLoader.sharedUrlCache.removeAllCachedResponses()
-    }
+    public static let sharedUrlCache = Nuke.DataLoader.sharedUrlCache
 }
 
 @objc(Prefetcher)
