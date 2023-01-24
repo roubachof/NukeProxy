@@ -42,6 +42,28 @@ namespace Xamarin.Nuke
 		[Export ("shared", ArgumentSemantic.Strong)]
 		ImagePipeline Shared { get; }
 
+		// +(void)setupWithDataCache;
+		[Static]
+		[Export ("setupWithDataCache")]
+		void SetupWithDataCache ();
+
+		// -(BOOL)isCachedFor:(NSURL * _Nonnull)url __attribute__((warn_unused_result("")));
+		[Export ("isCachedFor:")]
+		bool IsCachedFor (NSUrl url);
+
+		// -(UIImage * _Nullable)getCachedImageFor:(NSURL * _Nonnull)url __attribute__((warn_unused_result("")));
+		[Export ("getCachedImageFor:")]
+		[return: NullAllowed]
+		UIImage GetCachedImageFor (NSUrl url);
+
+		// -(void)removeImageFromCacheFor:(NSURL * _Nonnull)url;
+		[Export ("removeImageFromCacheFor:")]
+		void RemoveImageFromCacheFor (NSUrl url);
+
+		// -(void)removeAllCaches;
+		[Export ("removeAllCaches")]
+		void RemoveAllCaches ();
+
 		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
 		[Export ("loadImageWithUrl:onCompleted:")]
 		void LoadImageWithUrl (NSUrl url, Action<UIImage, NSString> onCompleted);
