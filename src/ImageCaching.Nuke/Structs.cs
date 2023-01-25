@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Xamarin.Nuke
+namespace ImageCaching.Nuke
 {
     public enum Destination : long
     {

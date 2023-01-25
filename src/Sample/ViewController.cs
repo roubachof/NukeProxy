@@ -4,7 +4,7 @@ using Foundation;
 using SkiaSharp;
 using SkiaSharp.Views.iOS;
 using UIKit;
-using Xamarin.Nuke;
+using ImageCaching.Nuke;
 
 namespace Sample
 {
