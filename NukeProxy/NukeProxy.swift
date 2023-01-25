@@ -90,7 +90,7 @@ public class ImagePipeline : NSObject {
             with: ImageRequest(
                 url: url,
                 options: reloadIgnoringCachedData ? [.reloadIgnoringCachedData] : [],
-                userInfo: [.imageIdKey: imageIdKey]
+                userInfo: imageIdKey == nil ? nil : [.imageIdKey: imageIdKey! ]
             ),
             completion: { result in
                 switch result {
