@@ -14,10 +14,11 @@ namespace Xamarin.Nuke
 		[Export ("shared", ArgumentSemantic.Strong)]
 		DataLoader Shared { get; }
 
-		// -(void)removeAllCachedResponses;
-		[Export ("removeAllCachedResponses")]
-		void RemoveAllCachedResponses ();
-	}
+        // @property (nonatomic, class, readonly, strong) NSURLCache * _Nonnull sharedUrlCache;
+        [Static]
+        [Export("sharedUrlCache", ArgumentSemantic.Strong)]
+        NSUrlCache SharedUrlCache { get; }
+    }
 
 	// @interface ImageCache : NSObject
 	[BaseType (typeof(NSObject))]
@@ -89,8 +90,16 @@ namespace Xamarin.Nuke
 	[BaseType (typeof(NSObject))]
 	interface Prefetcher
 	{
-		// -(void)startPrefetchingWith:(NSArray<NSURL *> * _Nonnull)with;
-		[Export ("startPrefetchingWith:")]
+        // - (nonnull instancetype)initWithDestination:(enum Destination)destination OBJC_DESIGNATED_INITIALIZER;
+        [Export("initWithDestination:")]
+        IntPtr Constructor(Destination destination);
+
+        // - (nonnull instancetype)initWithDestination:(enum Destination)destination maxConcurrentRequestCount:(NSInteger)maxConcurrentRequestCount OBJC_DESIGNATED_INITIALIZER;
+        [Export("initWithDestination:maxConcurrentRequestCount:")]
+        IntPtr Constructor(Destination destination, int maxConcurrentRequestCount);
+
+        // -(void)startPrefetchingWith:(NSArray<NSURL *> * _Nonnull)with;
+        [Export ("startPrefetchingWith:")]
 		void StartPrefetchingWith (NSUrl[] with);
 
 		// -(void)stopPrefetchingWith:(NSArray<NSURL *> * _Nonnull)with;

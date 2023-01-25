@@ -123,15 +123,34 @@ public final class DataLoader: NSObject {
     public static let shared = DataLoader()
     
     @objc
-    public func removeAllCachedResponses() {
-        Nuke.DataLoader.sharedUrlCache.removeAllCachedResponses()
-    }
+    public static let sharedUrlCache = Nuke.DataLoader.sharedUrlCache
 }
 
 @objc(Prefetcher)
 public final class Prefetcher: NSObject {
  
-    let prefetcher = ImagePrefetcher()
+    private var prefetcher: ImagePrefetcher
+    
+    @objc
+    public override init() {
+        prefetcher = ImagePrefetcher()
+    }
+    
+    @objc
+    public init(destination: Destination = .memoryCache) {
+        prefetcher = ImagePrefetcher(destination: destination == .memoryCache ?
+                                        ImagePrefetcher.Destination.memoryCache :
+                                        ImagePrefetcher.Destination.diskCache)
+    }
+    
+    @objc
+    public init(destination: Destination = .memoryCache,
+                maxConcurrentRequestCount: Int = 2) {
+        prefetcher = ImagePrefetcher(destination: destination == .memoryCache ?
+                                        ImagePrefetcher.Destination.memoryCache :
+                                        ImagePrefetcher.Destination.diskCache,
+                                     maxConcurrentRequestCount: maxConcurrentRequestCount)
+    }
     
     @objc
     public func startPrefetching(with: [URL]) {
@@ -156,5 +175,11 @@ public final class Prefetcher: NSObject {
     @objc
     public func unPause() {
         prefetcher.isPaused = false
+    }
+    
+    @objc
+    public enum Destination: Int {
+        case memoryCache
+        case diskCache
     }
 }
