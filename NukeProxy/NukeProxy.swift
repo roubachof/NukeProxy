@@ -62,6 +62,22 @@ public class ImagePipeline : NSObject {
         )
     }
     
+    @objc
+    public func loadImage(urlRequest: URLRequest, onCompleted: @escaping (UIImage?, String) -> Void) {
+        _ = Nuke.ImagePipeline.shared.loadImage(
+            with: urlRequest,
+            progress: nil,
+            completion: { result in
+                switch result {
+                case let .success(response):
+                    onCompleted(response.image, "success")
+                case let .failure(error):
+                    onCompleted(nil, error.localizedDescription)
+                }
+            }
+        )
+    }
+    
     
     @objc
     public func loadImage(url: URL?, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
@@ -70,11 +86,27 @@ public class ImagePipeline : NSObject {
     }
     
     @objc
+    public func loadImage(urlRequest: URLRequest, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+        let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
+        Nuke.loadImage(with: urlRequest, options: options, into: into)
+    }
+    
+    @objc
     public func loadImage(url: URL?, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
         
         Nuke.loadImage(with: ImageRequest(
             url: url,
+            userInfo: [.imageIdKey: imageIdKey]
+        ), options: options, into: into)
+    }
+    
+    @objc
+    public func loadImage(urlRequest: URLRequest, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+        let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
+        
+        Nuke.loadImage(with: ImageRequest(
+            urlRequest: urlRequest,
             userInfo: [.imageIdKey: imageIdKey]
         ), options: options, into: into)
     }
