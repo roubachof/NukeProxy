@@ -69,13 +69,25 @@ namespace ImageCaching.Nuke
         [Export ("loadImageWithUrl:onCompleted:")]
 		void LoadImageWithUrl ([NullAllowed] NSUrl url, Action<UIImage, NSString> onCompleted);
 
+		// -(void)loadImageWithUrlRequest:(NSURLRequest * _Nonnull)urlRequest onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
+		[Export ("loadImageWithUrlRequest:onCompleted:")]
+		void LoadImageWithUrlRequest (NSUrlRequest urlRequest, Action<UIImage, NSString> onCompleted);
+
         // -(void)loadImageWithUrl:(NSURL * _Nullable)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
         [Export ("loadImageWithUrl:placeholder:errorImage:into:")]
 		void LoadImageWithUrl ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
+		// -(void)loadImageWithUrlRequest:(NSURLRequest * _Nonnull)urlRequest placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		[Export ("loadImageWithUrlRequest:placeholder:errorImage:into:")]
+		void LoadImageWithUrlRequest (NSUrlRequest urlRequest, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+
         // -(void)loadImageWithUrl:(NSURL * _Nullable)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
         [Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:")]
 		void LoadImageWithUrl ([NullAllowed] NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+
+		// -(void)loadImageWithUrlRequest:(NSURLRequest * _Nonnull)urlRequest imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		[Export ("loadImageWithUrlRequest:imageIdKey:placeholder:errorImage:into:")]
+		void LoadImageWithUrlRequest (NSUrlRequest urlRequest, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
         // -(void)loadDataWithUrl:(NSURL * _Nullable)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
         [Export ("loadDataWithUrl:onCompleted:")]
