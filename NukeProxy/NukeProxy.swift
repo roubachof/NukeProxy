@@ -80,6 +80,17 @@ public class ImagePipeline : NSObject {
     }
     
     @objc
+    public func loadImage(url: URL?, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, width: Double, height: Double) {
+        var resizedImageProcessors: [ImageProcessing] {
+          return [ImageProcessors.Resize(size: CGSize(width: width, height: height), contentMode: .aspectFill)]
+        }
+        let request = ImageRequest(url: url, processors: resizedImageProcessors)
+        
+        let options = ImageLoadingOptions(placeholder:placeholder, failureImage: errorImage)
+        Nuke.loadImage(with: request, options: options, into: into)
+    }
+    
+    @objc
     public func loadData(url: URL?, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         loadData(url: url, imageIdKey: nil, reloadIgnoringCachedData: false, onCompleted: onCompleted)
     }

@@ -15,7 +15,7 @@ namespace Sample
         private readonly NSUrl _topImageUrl = new NSUrl("https://placekitten.com/g/300/300");
         private readonly Prefetcher _imagePrefetcher = new Prefetcher();
 
-        private UIButton _streamButton, _placeholderButton, _clearButton, _prefetchButton, _dumpCacheStateButton;
+        private UIButton _streamButton, _placeholderButton, _clearButton, _prefetchButton, _dumpCacheStateButton, _resizedButton;
         private UIImageView _imageView;
         private SKCanvasView _skiaCanvasView;
         private UIStackView _bottomStackView;
@@ -76,6 +76,20 @@ namespace Sample
                     UIImage.FromBundle("Placeholder"),
                     null,
                     _imageView);
+            };
+
+            _resizedButton = AddButton("Load and resize");
+            Add(_resizedButton);
+
+            _resizedButton.TouchUpInside += (s, e) =>
+            {
+                ImageCache.Shared.RemoveAll();
+
+                ImagePipeline.Shared.LoadImageWithUrl(
+                    _topImageUrl,
+                    UIImage.FromBundle("Placeholder"),
+                    null,
+                    _imageView, 10, 10);
             };
 
             _skiaCanvasView = new SKCanvasView
@@ -152,8 +166,13 @@ namespace Sample
             _placeholderButton.HeightAnchor.ConstraintEqualTo(30f).Active = true;
             _placeholderButton.CenterXAnchor.ConstraintEqualTo(View.CenterXAnchor).Active = true;
 
+            _resizedButton.CenterXAnchor.ConstraintEqualTo(View.CenterXAnchor).Active = true;
+            _resizedButton.TopAnchor.ConstraintEqualTo(_placeholderButton.BottomAnchor, 16f).Active = true;
+            _resizedButton.WidthAnchor.ConstraintEqualTo(View.WidthAnchor, 0.95f).Active = true;
+            _resizedButton.HeightAnchor.ConstraintEqualTo(_placeholderButton.HeightAnchor).Active = true;
+
             _skiaCanvasView.CenterXAnchor.ConstraintEqualTo(View.CenterXAnchor).Active = true;
-            _skiaCanvasView.TopAnchor.ConstraintEqualTo(_placeholderButton.BottomAnchor, 16f).Active = true;
+            _skiaCanvasView.TopAnchor.ConstraintEqualTo(_resizedButton.BottomAnchor, 16f).Active = true;
             _skiaCanvasView.WidthAnchor.ConstraintEqualTo(View.WidthAnchor, 0.5f).Active = true;
             _skiaCanvasView.HeightAnchor.ConstraintEqualTo(_skiaCanvasView.WidthAnchor).Active = true;
 
