@@ -1,4 +1,5 @@
 using System;
+using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
@@ -77,9 +78,9 @@ namespace ImageCaching.Nuke
         [Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:")]
 		void LoadImageWithUrl ([NullAllowed] NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-        // -(void)loadImageWithUrl:(NSURL * _Nullable)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into width:(double)width height:(double)height;
-        [Export("loadImageWithUrl:placeholder:errorImage:into:width:height:")]
-        void LoadImageWithUrl([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, double width, double height);
+        // -(void)loadImageWithUrl:(NSURL * _Nullable)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into size:(CGSize)size aspectFill:(BOOL)aspectFill;
+        [Export("loadImageWithUrl:placeholder:errorImage:into:size:aspectFill:")]
+        void LoadImageWithUrl([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, CGSize size, bool aspectFill);
 
         // -(void)loadDataWithUrl:(NSURL * _Nullable)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
         [Export ("loadDataWithUrl:onCompleted:")]

@@ -89,7 +89,7 @@ namespace Sample
                     _topImageUrl,
                     UIImage.FromBundle("Placeholder"),
                     null,
-                    _imageView, 10, 10);
+                    _imageView, new CoreGraphics.CGSize(10, 10), true);
             };
 
             _skiaCanvasView = new SKCanvasView

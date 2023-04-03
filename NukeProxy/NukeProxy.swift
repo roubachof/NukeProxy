@@ -80,9 +80,9 @@ public class ImagePipeline : NSObject {
     }
     
     @objc
-    public func loadImage(url: URL?, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, width: Double, height: Double) {
+    public func loadImage(url: URL?, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, size: CGSize, aspectFill: Bool = true) {
         var resizedImageProcessors: [ImageProcessing] {
-          return [ImageProcessors.Resize(size: CGSize(width: width, height: height), contentMode: .aspectFill)]
+            return [ImageProcessors.Resize(size: size, contentMode: aspectFill ? .aspectFill : .aspectFit)]
         }
         let request = ImageRequest(url: url, processors: resizedImageProcessors)
         
