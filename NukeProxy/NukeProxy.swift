@@ -38,7 +38,9 @@ public class ImagePipeline : NSObject {
     
     @objc
     public func removeImageFromCache(for url: URL) {
-        Nuke.ImagePipeline.shared.cache.removeCachedData(for: ImageRequest(url: url))
+        let imageRequest = ImageRequest(url: url)
+        Nuke.ImagePipeline.shared.cache.removeCachedData(for: imageRequest)
+        Nuke.ImagePipeline.shared.cache.removeCachedImage(for: imageRequest)
     }
     
     @objc
