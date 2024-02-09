@@ -47,9 +47,9 @@ public class ImagePipeline : NSObject {
     public func removeAllCaches() {
         Nuke.ImagePipeline.shared.cache.removeAll()
     }
-    
+
     @objc
-    public func loadImage(url: URL?, onCompleted: @escaping (UIImage?, String) -> Void) {
+    public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) {
         _ = Nuke.ImagePipeline.shared.loadImage(
             with: url,
             progress: nil,
@@ -63,35 +63,67 @@ public class ImagePipeline : NSObject {
             }
         )
     }
-    
-    
+
     @objc
-    public func loadImage(url: URL?, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+    public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+        loadImage(url: url, placeholder: placeholder, errorImage: errorImage, into: into, reloadIgnoringCachedData: false)
+    }
+
+    @objc
+    public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, reloadIgnoringCachedData: Bool) {
         let options = ImageLoadingOptions(placeholder:placeholder, failureImage: errorImage)
-        Nuke.loadImage(with: url, options: options, into: into)
+        Nuke.loadImage(
+            with: ImageRequest(
+                urlRequest: URLRequest(
+                    url: url,
+                    cachePolicy: reloadIgnoringCachedData ?
+                        URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData :
+                        URLRequest.CachePolicy.useProtocolCachePolicy
+                )
+            ),
+            options: options,
+            into: into)
     }
-    
+
     @objc
-    public func loadImage(url: URL?, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+    public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
+        loadImage(url: url, imageIdKey: imageIdKey, placeholder: placeholder, errorImage: errorImage, into: into, reloadIgnoringCachedData: false)
+    }
+
+    @objc
+    public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, reloadIgnoringCachedData: Bool) {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
-        
-        Nuke.loadImage(with: ImageRequest(
-            url: url,
-            userInfo: [.imageIdKey: imageIdKey]
-        ), options: options, into: into)
+
+        Nuke.loadImage(
+            with: ImageRequest(
+                urlRequest: URLRequest(
+                    url: url,
+                    cachePolicy: reloadIgnoringCachedData ?
+                        URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData :
+                        URLRequest.CachePolicy.useProtocolCachePolicy
+                ),
+                userInfo: [.imageIdKey: imageIdKey ]
+            ),
+            options: options,
+            into: into
+        )
     }
-    
+
     @objc
-    public func loadData(url: URL?, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
+    public func loadData(url: URL, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         loadData(url: url, imageIdKey: nil, reloadIgnoringCachedData: false, onCompleted: onCompleted)
     }
-    
+
     @objc
-    public func loadData(url: URL?, imageIdKey: String?, reloadIgnoringCachedData: Bool, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
+    public func loadData(url: URL, imageIdKey: String?, reloadIgnoringCachedData: Bool, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         _ = Nuke.ImagePipeline.shared.loadData(
             with: ImageRequest(
-                url: url,
-                options: reloadIgnoringCachedData ? [.reloadIgnoringCachedData] : [],
+                urlRequest: URLRequest(
+                    url: url,
+                    cachePolicy: reloadIgnoringCachedData ? 
+                        URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData :
+                        URLRequest.CachePolicy.useProtocolCachePolicy
+                ),
                 userInfo: imageIdKey == nil ? nil : [.imageIdKey: imageIdKey! ]
             ),
             completion: { result in
