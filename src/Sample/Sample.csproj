@@ -1,37 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net6.0-ios</TargetFramework>
+        <TargetFramework>net8.0-ios</TargetFramework>
         <RootNamespace>Sample</RootNamespace>
-        <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
         <OutputType>Exe</OutputType>
+
+        <ApplicationTitle>Nuke Sample</ApplicationTitle>
+        <ApplicationId>awesomeorg.nuke.sample</ApplicationId>
+
         <SupportedOSPlatformVersion>14.5</SupportedOSPlatformVersion>
+
+        <EnableAssemblyILStripping>false</EnableAssemblyILStripping>
+        <MtouchLink>None</MtouchLink>
+
+        <Platforms>AnyCPU;iPhone;iPhoneSimulator</Platforms>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-      <IntermediateOutputPath>obj\Debug</IntermediateOutputPath>
-      <DebugSymbols>false</DebugSymbols>
-      <DebugType></DebugType>
-      <OutputPath>bin\Debug</OutputPath>
-      <DefineConstants></DefineConstants>
-      <WarningLevel>4</WarningLevel>
-      <MtouchLink>SdkOnly</MtouchLink>
-      <NoWarn></NoWarn>
-      <NoStdLib>false</NoStdLib>
-      <PlatformTarget>anycpu</PlatformTarget>
-      <DeviceSpecificBuild>false</DeviceSpecificBuild>
-      <_BundlerDebug>false</_BundlerDebug>
-      <MtouchVerbosity></MtouchVerbosity>
-      <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    </PropertyGroup>
-    
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-      <MtouchLink>SdkOnly</MtouchLink>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' or '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+        <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+        <CodesignKey>iPhone Distribution</CodesignKey>
+        <ArchiveOnBuild>true</ArchiveOnBuild>
+        <MtouchUseLlvm>false</MtouchUseLlvm>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="SkiaSharp" Version="2.88.2" />
-        <PackageReference Include="SkiaSharp.Views" Version="2.88.2" />
+        <PackageReference Include="SkiaSharp" Version="2.88.7" />
+        <PackageReference Include="SkiaSharp.Views" Version="2.88.7" />
     </ItemGroup>
     
     <ItemGroup>

@@ -14,11 +14,11 @@ namespace ImageCaching.Nuke
 		[Export ("shared", ArgumentSemantic.Strong)]
 		DataLoader Shared { get; }
 
-        // @property (nonatomic, class, readonly, strong) NSURLCache * _Nonnull sharedUrlCache;
-        [Static]
-        [Export("sharedUrlCache", ArgumentSemantic.Strong)]
-        NSUrlCache SharedUrlCache { get; }
-    }
+		// @property (readonly, nonatomic, strong, class) NSURLCache * _Nonnull sharedUrlCache;
+		[Static]
+		[Export ("sharedUrlCache", ArgumentSemantic.Strong)]
+		NSUrlCache SharedUrlCache { get; }
+	}
 
 	// @interface ImageCache : NSObject
 	[BaseType (typeof(NSObject))]
@@ -65,41 +65,51 @@ namespace ImageCaching.Nuke
 		[Export ("removeAllCaches")]
 		void RemoveAllCaches ();
 
-        // -(void)loadImageWithUrl:(NSURL * _Nullable)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
-        [Export ("loadImageWithUrl:onCompleted:")]
-		void LoadImageWithUrl ([NullAllowed] NSUrl url, Action<UIImage, NSString> onCompleted);
+		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
+		[Export ("loadImageWithUrl:onCompleted:")]
+		void LoadImageWithUrl (NSUrl url, Action<UIImage, NSString> onCompleted);
 
-        // -(void)loadImageWithUrl:(NSURL * _Nullable)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
-        [Export ("loadImageWithUrl:placeholder:errorImage:into:")]
-		void LoadImageWithUrl ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		[Export ("loadImageWithUrl:placeholder:errorImage:into:")]
+		void LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-        // -(void)loadImageWithUrl:(NSURL * _Nullable)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
-        [Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:")]
-		void LoadImageWithUrl ([NullAllowed] NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
+		[Export ("loadImageWithUrl:placeholder:errorImage:into:reloadIgnoringCachedData:")]
+		void LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
 
-        // -(void)loadDataWithUrl:(NSURL * _Nullable)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
-        [Export ("loadDataWithUrl:onCompleted:")]
-		void LoadDataWithUrl ([NullAllowed] NSUrl url, Action<NSData, NSUrlResponse> onCompleted);
+		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:")]
+		void LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-        // -(void)loadDataWithUrl:(NSURL * _Nullable)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted;
-        [Export ("loadDataWithUrl:imageIdKey:reloadIgnoringCachedData:onCompleted:")]
-		void LoadDataWithUrl ([NullAllowed] NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
+		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
+		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:reloadIgnoringCachedData:")]
+		void LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
+
+		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
+		[Export ("loadDataWithUrl:onCompleted:")]
+		void LoadDataWithUrl (NSUrl url, Action<NSData, NSUrlResponse> onCompleted);
+
+		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
+		[Export ("loadDataWithUrl:imageIdKey:reloadIgnoringCachedData:onCompleted:")]
+		void LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
 	}
 
 	// @interface Prefetcher : NSObject
 	[BaseType (typeof(NSObject))]
 	interface Prefetcher
 	{
-        // - (nonnull instancetype)initWithDestination:(enum Destination)destination OBJC_DESIGNATED_INITIALIZER;
-        [Export("initWithDestination:")]
-        IntPtr Constructor(Destination destination);
+		// -(instancetype _Nonnull)initWithDestination:(enum Destination)destination __attribute__((objc_designated_initializer));
+		[Export ("initWithDestination:")]
+		[DesignatedInitializer]
+		NativeHandle Constructor (Destination destination);
 
-        // - (nonnull instancetype)initWithDestination:(enum Destination)destination maxConcurrentRequestCount:(NSInteger)maxConcurrentRequestCount OBJC_DESIGNATED_INITIALIZER;
-        [Export("initWithDestination:maxConcurrentRequestCount:")]
-        IntPtr Constructor(Destination destination, int maxConcurrentRequestCount);
+		// -(instancetype _Nonnull)initWithDestination:(enum Destination)destination maxConcurrentRequestCount:(NSInteger)maxConcurrentRequestCount __attribute__((objc_designated_initializer));
+		[Export ("initWithDestination:maxConcurrentRequestCount:")]
+		[DesignatedInitializer]
+		NativeHandle Constructor (Destination destination, nint maxConcurrentRequestCount);
 
-        // -(void)startPrefetchingWith:(NSArray<NSURL *> * _Nonnull)with;
-        [Export ("startPrefetchingWith:")]
+		// -(void)startPrefetchingWith:(NSArray<NSURL *> * _Nonnull)with;
+		[Export ("startPrefetchingWith:")]
 		void StartPrefetchingWith (NSUrl[] with);
 
 		// -(void)stopPrefetchingWith:(NSArray<NSURL *> * _Nonnull)with;
