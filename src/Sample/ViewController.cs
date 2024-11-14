@@ -11,8 +11,8 @@ namespace Sample
     public partial class ViewController : UIViewController
     {
         private SKBitmap _bitmap;
-        private readonly NSUrl _bottomImageUrl = new NSUrl("https://placekitten.com/g/1000/1000"); 
-        private readonly NSUrl _topImageUrl = new NSUrl("https://placekitten.com/g/300/300");
+        private readonly NSUrl _bottomImageUrl = new NSUrl("https://www.dummyimage.com/600x400/e30ce3/8bd61a.png&text=Bottom+Image");
+        private readonly NSUrl _topImageUrl = new NSUrl("https://www.dummyimage.com/300x300/e30ce3/8bd61a.png&text=Top+Image");
         private readonly Prefetcher _imagePrefetcher = new Prefetcher();
 
         private UIButton _streamButton, _placeholderButton, _clearButton, _prefetchButton, _dumpCacheStateButton;
