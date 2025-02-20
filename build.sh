@@ -10,6 +10,8 @@ echo 'exit 0' > Carthage/Checkouts/Nuke/Scripts/validate.sh
 
 sh carthage.sh build --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
 
+rm -r Output/NukeProxy.xcframework
+
 echo "xcode build"
 xcodebuild archive -sdk iphoneos -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphoneos SKIP_INSTALL=NO
 xcodebuild archive -sdk iphonesimulator -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphonesimulator SKIP_INSTALL=NO
