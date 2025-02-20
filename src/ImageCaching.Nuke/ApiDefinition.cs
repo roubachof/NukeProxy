@@ -92,6 +92,10 @@ namespace ImageCaching.Nuke
 		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
 		[Export ("loadDataWithUrl:imageIdKey:reloadIgnoringCachedData:onCompleted:")]
 		void LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
+
+		// -(void)cancelTask:(NSString * _Nonnull)url;
+		[Export ("cancelTask:")]
+		void CancelTask (string url);
 	}
 
 	// @interface Prefetcher : NSObject

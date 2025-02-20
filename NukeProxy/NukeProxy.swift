@@ -22,6 +22,8 @@ public class ImagePipeline : NSObject {
         Nuke.ImagePipeline.shared = Nuke.ImagePipeline(configuration: .withDataCache)
     }
     
+    private var tasks: [ImageTask] = []
+    
     @objc
     public func isCached(for url: URL) -> Bool {
         return Nuke.ImagePipeline.shared.cache.containsCachedImage(for: ImageRequest(url: url))
@@ -47,94 +49,102 @@ public class ImagePipeline : NSObject {
     public func removeAllCaches() {
         Nuke.ImagePipeline.shared.cache.removeAll()
     }
-
+    
     @objc
     public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) {
-        _ = Nuke.ImagePipeline.shared.loadImage(
+        let task = Nuke.ImagePipeline.shared.loadImage(
             with: url,
             progress: nil,
-            completion: { result in
+            completion: { [weak self] result in
                 switch result {
                 case let .success(response):
                     onCompleted(response.image, "success")
                 case let .failure(error):
                     onCompleted(nil, error.localizedDescription)
                 }
+                self?.tasks.removeAll(where: { $0.request.imageId == url.absoluteString })
             }
         )
+        
+        tasks.append(task)
     }
-
+    
     @objc
     public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
         loadImage(url: url, placeholder: placeholder, errorImage: errorImage, into: into, reloadIgnoringCachedData: false)
     }
-
+    
     @objc
     public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, reloadIgnoringCachedData: Bool) {
-        let options = ImageLoadingOptions(placeholder:placeholder, failureImage: errorImage)
-        Nuke.loadImage(
-            with: ImageRequest(
-                urlRequest: URLRequest(
-                    url: url,
-                    cachePolicy: reloadIgnoringCachedData ?
-                        URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData :
-                        URLRequest.CachePolicy.useProtocolCachePolicy
-                )
-            ),
+        let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
+        let cachePolicy = reloadIgnoringCachedData ? URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData : URLRequest.CachePolicy.useProtocolCachePolicy
+        let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy)
+        let request = ImageRequest(urlRequest: urlRequest)
+        
+        let task = Nuke.loadImage(
+            with: request,
             options: options,
-            into: into)
+            into: into
+        )
+        
+        tasks.append(task!)
     }
-
+    
     @objc
     public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) {
         loadImage(url: url, imageIdKey: imageIdKey, placeholder: placeholder, errorImage: errorImage, into: into, reloadIgnoringCachedData: false)
     }
-
+    
     @objc
     public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, reloadIgnoringCachedData: Bool) {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
-
-        Nuke.loadImage(
-            with: ImageRequest(
-                urlRequest: URLRequest(
-                    url: url,
-                    cachePolicy: reloadIgnoringCachedData ?
-                        URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData :
-                        URLRequest.CachePolicy.useProtocolCachePolicy
-                ),
-                userInfo: [.imageIdKey: imageIdKey ]
-            ),
+        let cachePolicy = reloadIgnoringCachedData ? URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData : URLRequest.CachePolicy.useProtocolCachePolicy
+        let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy)
+        let request = ImageRequest(urlRequest: urlRequest, userInfo: [.imageIdKey: imageIdKey])
+        
+        let task = Nuke.loadImage(
+            with: request,
             options: options,
             into: into
         )
+        
+        tasks.append(task!)
     }
-
+    
     @objc
     public func loadData(url: URL, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
         loadData(url: url, imageIdKey: nil, reloadIgnoringCachedData: false, onCompleted: onCompleted)
     }
-
+    
     @objc
     public func loadData(url: URL, imageIdKey: String?, reloadIgnoringCachedData: Bool, onCompleted: @escaping (Data?, URLResponse?) -> Void) {
-        _ = Nuke.ImagePipeline.shared.loadData(
-            with: ImageRequest(
-                urlRequest: URLRequest(
-                    url: url,
-                    cachePolicy: reloadIgnoringCachedData ? 
-                        URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData :
-                        URLRequest.CachePolicy.useProtocolCachePolicy
-                ),
-                userInfo: imageIdKey == nil ? nil : [.imageIdKey: imageIdKey! ]
-            ),
-            completion: { result in
+        let cachePolicy = reloadIgnoringCachedData ? URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData : URLRequest.CachePolicy.useProtocolCachePolicy
+        let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy)
+        let request = ImageRequest(urlRequest: urlRequest, userInfo: imageIdKey == nil ? nil : [.imageIdKey: imageIdKey!])
+        
+        let task = Nuke.ImagePipeline.shared.loadData(
+            with: request,
+            completion: { [weak self] result in
                 switch result {
                 case let .success(response):
                     onCompleted(response.data, response.response)
                 case .failure(_):
                     onCompleted(nil, nil)
                 }
+                self?.tasks.removeAll(where: { $0.request.imageId == imageIdKey })
             }
         )
+        
+        tasks.append(task)
+    }
+    
+    @objc
+    public func cancelTask(_ url: String) {
+        tasks.forEach { task in 
+            if (task.request.imageId == url) {
+                task.cancel()
+            }
+        }
     }
 }
 
@@ -162,7 +172,7 @@ public final class DataLoader: NSObject {
 
 @objc(Prefetcher)
 public final class Prefetcher: NSObject {
- 
+    
     private var prefetcher: ImagePrefetcher
     
     @objc
@@ -173,17 +183,16 @@ public final class Prefetcher: NSObject {
     @objc
     public init(destination: Destination = .memoryCache) {
         prefetcher = ImagePrefetcher(destination: destination == .memoryCache ?
-                                        ImagePrefetcher.Destination.memoryCache :
+                                     ImagePrefetcher.Destination.memoryCache :
                                         ImagePrefetcher.Destination.diskCache)
     }
     
     @objc
-    public init(destination: Destination = .memoryCache,
-                maxConcurrentRequestCount: Int = 2) {
-        prefetcher = ImagePrefetcher(destination: destination == .memoryCache ?
-                                        ImagePrefetcher.Destination.memoryCache :
-                                        ImagePrefetcher.Destination.diskCache,
-                                     maxConcurrentRequestCount: maxConcurrentRequestCount)
+    public init(destination: Destination = .memoryCache, maxConcurrentRequestCount: Int = 2) {
+        prefetcher = ImagePrefetcher(
+            destination: destination == .memoryCache ? ImagePrefetcher.Destination.memoryCache : ImagePrefetcher.Destination.diskCache,
+            maxConcurrentRequestCount: maxConcurrentRequestCount
+        )
     }
     
     @objc
