@@ -14,8 +14,8 @@ jobs:
   build:
     runs-on: macOS-15
     env:
-      XCODE_VERSION: 16
-      dotnetVersion: 9.0.100
+      XCODE_VERSION: 16.2
+      dotnetVersion: 9.0.200
 
     steps:
       - name: Checkout
