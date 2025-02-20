@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p artifacts
+
 echo "Update carthage deps"
 sh carthage.sh update --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
 
