@@ -13,7 +13,6 @@ import Nuke
 
 @objc(ImagePipeline)
 public class ImagePipeline : NSObject {
-    
     @objc
     public static let shared = ImagePipeline()
     
@@ -23,6 +22,7 @@ public class ImagePipeline : NSObject {
     }
     
     private var tasks: [ImageTask] = []
+    private let taskLock = NSLock()
     
     @objc
     public func isCached(for url: URL) -> Bool {
@@ -62,12 +62,11 @@ public class ImagePipeline : NSObject {
                 case let .failure(error):
                     onCompleted(nil, error.localizedDescription)
                 }
-                self?.tasks.removeAll(where: { $0.request.imageId == url.absoluteString })
+                self?.removeAllTasksForUrl(url.absoluteString)
             }
         )
         
-        tasks.append(task)
-        return task.taskId
+        return addTask(task)
     }
     
     @objc
@@ -88,8 +87,7 @@ public class ImagePipeline : NSObject {
             into: into
         )
         
-        tasks.append(task!)
-        return task!.taskId
+        return addTask(task)
     }
     
     @objc
@@ -109,9 +107,8 @@ public class ImagePipeline : NSObject {
             options: options,
             into: into
         )
-        
-        tasks.append(task!)
-        return task!.taskId
+
+        return addTask(task)
     }
     
     @objc
@@ -134,18 +131,18 @@ public class ImagePipeline : NSObject {
                 case .failure(_):
                     onCompleted(nil, nil)
                 }
-                self?.tasks.removeAll(where: { $0.request.imageId == imageIdKey })
+                self?.removeAllTasksForUrl(url.absoluteString)
             }
         )
         
-        tasks.append(task)
-        return task.taskId
+        return addTask(task)
     }
     
     @objc
     public func cancelTasksForUrl(_ url: String) {
         var cancelledTasks = [ImageTask]()
 
+        taskLock.lock()
         tasks.forEach { task in 
             if (task.request.imageId == url) {
                 task.cancel()
@@ -156,12 +153,33 @@ public class ImagePipeline : NSObject {
         tasks.removeAll { task in
             cancelledTasks.contains(task)
         }
+        taskLock.unlock()
     }
 
     @objc
     public func cancelTask(_ taskId: Int64) {
+        taskLock.lock()
         tasks.first(where: { $0.taskId == taskId })?.cancel()
         tasks.removeAll(where: { $0.taskId == taskId })
+        taskLock.unlock()
+    }
+
+    private func addTask(_ task: ImageTask?) -> Int64 {
+        guard let task else {
+            return -1
+        }
+
+        taskLock.lock()
+        tasks.append(task)
+        taskLock.unlock()
+
+        return task.taskId
+    }
+
+    private func removeAllTasksForUrl(_ url: String) {
+        taskLock.lock()
+        tasks.removeAll(where: { $0.request.imageId == url })
+        taskLock.unlock()
     }
 }
 
