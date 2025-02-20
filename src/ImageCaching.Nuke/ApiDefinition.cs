@@ -65,33 +65,41 @@ namespace ImageCaching.Nuke
 		[Export ("removeAllCaches")]
 		void RemoveAllCaches ();
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
+		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted;
 		[Export ("loadImageWithUrl:onCompleted:")]
-		void LoadImageWithUrl (NSUrl url, Action<UIImage, NSString> onCompleted);
+		long LoadImageWithUrl (NSUrl url, Action<UIImage, NSString> onCompleted);
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
 		[Export ("loadImageWithUrl:placeholder:errorImage:into:")]
-		void LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+		long LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
+		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
 		[Export ("loadImageWithUrl:placeholder:errorImage:into:reloadIgnoringCachedData:")]
-		void LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
+		long LoadImageWithUrl (NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
 		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:")]
-		void LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
+		long LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-		// -(void)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
+		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
 		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:reloadIgnoringCachedData:")]
-		void LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
+		long LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
 
-		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
+		// -(Int64)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
 		[Export ("loadDataWithUrl:onCompleted:")]
-		void LoadDataWithUrl (NSUrl url, Action<NSData, NSUrlResponse> onCompleted);
+		long LoadDataWithUrl (NSUrl url, Action<NSData, NSUrlResponse> onCompleted);
 
-		// -(void)loadDataWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
+		// -(Int64)loadDataWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
 		[Export ("loadDataWithUrl:imageIdKey:reloadIgnoringCachedData:onCompleted:")]
-		void LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
+		long LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSUrlResponse> onCompleted);
+
+		// -(Int64)cancelTasksForUrl:(NSString * _Nonnull)url;
+		[Export ("cancelTasksForUrl:")]
+		void CancelTasksForUrl (string url);
+
+		// -(void)cancelTask:(Int64 * _Nonnull)taskId;
+		[Export ("cancelTask:")]
+		void CancelTask (long taskId);
 	}
 
 	// @interface Prefetcher : NSObject

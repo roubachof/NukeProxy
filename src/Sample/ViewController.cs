@@ -20,7 +20,8 @@ namespace Sample
         private SKCanvasView _skiaCanvasView;
         private UIStackView _bottomStackView;
         private UILabel _cacheStatusLabel;
-        
+        private UIButton _imageListButton;
+
         public ViewController(IntPtr handle) : base(handle)
         {
         }
@@ -106,6 +107,12 @@ namespace Sample
                 _skiaCanvasView.LayoutSubviews();
                  _imageView.Image = null;
             };
+
+            _imageListButton = AddButton("Image List");
+            _imageListButton.TouchUpInside += (sender, args) =>
+            {
+                NavigationController.PushViewController(new ImageTableViewController(), true);
+            };
             
             _prefetchButton = AddButton("Prefetch above images");
             _prefetchButton.TouchUpInside += (sender, args) =>
@@ -122,6 +129,7 @@ namespace Sample
             _cacheStatusLabel = new UILabel(){ Lines = 0, TranslatesAutoresizingMaskIntoConstraints = false};
             
             _bottomStackView.AddArrangedSubview(_clearButton);
+            _bottomStackView.AddArrangedSubview(_imageListButton);
             _bottomStackView.AddArrangedSubview(_prefetchButton);
             _bottomStackView.AddArrangedSubview(_dumpCacheStateButton);
             
