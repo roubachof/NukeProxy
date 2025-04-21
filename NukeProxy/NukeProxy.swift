@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Nuke
-
+import NukeExtensions
 
 @objc(ImagePipeline)
 public class ImagePipeline : NSObject {
@@ -54,7 +54,6 @@ public class ImagePipeline : NSObject {
     public func loadImage(url: URL, onCompleted: @escaping (UIImage?, String) -> Void) -> Int64 {
         let task = Nuke.ImagePipeline.shared.loadImage(
             with: url,
-            progress: nil,
             completion: { [weak self] result in
                 switch result {
                 case let .success(response):
@@ -69,19 +68,19 @@ public class ImagePipeline : NSObject {
         return addTask(task)
     }
     
-    @objc
+    @MainActor @objc
     public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) -> Int64 {
         return loadImage(url: url, placeholder: placeholder, errorImage: errorImage, into: into, reloadIgnoringCachedData: false)
     }
     
-    @objc
+    @MainActor @objc
     public func loadImage(url: URL, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, reloadIgnoringCachedData: Bool) -> Int64 {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
         let cachePolicy = reloadIgnoringCachedData ? URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData : URLRequest.CachePolicy.useProtocolCachePolicy
         let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy)
         let request = ImageRequest(urlRequest: urlRequest)
         
-        let task = Nuke.loadImage(
+        let task = NukeExtensions.loadImage(
             with: request,
             options: options,
             into: into
@@ -90,19 +89,19 @@ public class ImagePipeline : NSObject {
         return addTask(task)
     }
     
-    @objc
+    @MainActor @objc
     public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) -> Int64 {
         return loadImage(url: url, imageIdKey: imageIdKey, placeholder: placeholder, errorImage: errorImage, into: into, reloadIgnoringCachedData: false)
     }
     
-    @objc
+    @MainActor @objc
     public func loadImage(url: URL, imageIdKey: String, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView, reloadIgnoringCachedData: Bool) -> Int64 {
         let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
         let cachePolicy = reloadIgnoringCachedData ? URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData : URLRequest.CachePolicy.useProtocolCachePolicy
         let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy)
         let request = ImageRequest(urlRequest: urlRequest, userInfo: [.imageIdKey: imageIdKey])
         
-        let task = Nuke.loadImage(
+        let task = NukeExtensions.loadImage(
             with: request,
             options: options,
             into: into
