@@ -3,14 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; };
 		B08309D5241256530090FB75 /* NukeProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B08309D3241256530090FB75 /* NukeProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B08309E7241259650090FB75 /* NukeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08309E6241259650090FB75 /* NukeProxy.swift */; };
+		CEBEC60F2DB66ACB00FA295C /* NukeExtensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */; };
+		CEBEC6102DB66ACB00FA295C /* NukeExtensions.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CEBEC6112DB66ACB00FA295C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CEBEC6102DB66ACB00FA295C /* NukeExtensions.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7D013CDD265D5A2100454172 /* Nuke.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Nuke.xcframework; path = Carthage/Build/Nuke.xcframework; sourceTree = "<group>"; };
@@ -18,6 +34,7 @@
 		B08309D3241256530090FB75 /* NukeProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NukeProxy.h; sourceTree = "<group>"; };
 		B08309D4241256530090FB75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B08309E6241259650090FB75 /* NukeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeProxy.swift; sourceTree = "<group>"; };
+		CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NukeExtensions.xcframework; path = Carthage/Build/NukeExtensions.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBEC60F2DB66ACB00FA295C /* NukeExtensions.xcframework in Frameworks */,
 				7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +80,7 @@
 		B08309DB241256A70090FB75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */,
 				7D013CDD265D5A2100454172 /* Nuke.xcframework */,
 			);
 			name = Frameworks;
@@ -89,6 +108,7 @@
 				B08309CC241256530090FB75 /* Sources */,
 				B08309CD241256530090FB75 /* Frameworks */,
 				B08309CE241256530090FB75 /* Resources */,
+				CEBEC6112DB66ACB00FA295C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
