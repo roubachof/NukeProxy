@@ -59,16 +59,6 @@ jobs:
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Disable SwiftLint in Nuke
-        run: |
-          echo 'exit 0' > Carthage/Checkouts/Nuke/Scripts/lint.sh
-          echo 'exit 0' > Carthage/Checkouts/Nuke/Scripts/validate.sh
-
-      - name: Build Nuke XCFramework
-        run: sh carthage.sh build --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build NukeProxy XCFramework
         run: |
           xcodebuild archive -sdk iphoneos -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphoneos SKIP_INSTALL=NO
