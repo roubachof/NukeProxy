@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
@@ -31,7 +31,7 @@ jobs:
         name: Create Artifacts Directory
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
         with:
           dotnet-version: ${{ env.dotnetVersion }}
    
@@ -41,13 +41,13 @@ jobs:
           dotnetVersion: ${{ env.dotnetVersion }}
 
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v3.0.0
+        uses: gittools/actions/gitversion/setup@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3
         with:
           versionSpec: '5.x'
 
       - name: Determine Version
         id: gitversion
-        uses: gittools/actions/gitversion/execute@v3.0.0
+        uses: gittools/actions/gitversion/execute@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3
         with:
           useConfigFile: true
 
@@ -56,14 +56,8 @@ jobs:
           mkdir -p artfifacts
           sh carthage.sh update --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
         continue-on-error: true
-
-      - name: Disable SwiftLint in Nuke
-        run: |
-          echo 'exit 0' > Carthage/Checkouts/Nuke/Scripts/lint.sh
-          echo 'exit 0' > Carthage/Checkouts/Nuke/Scripts/validate.sh
-
-      - name: Build Nuke XCFramework
-        run: sh carthage.sh build --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build NukeProxy XCFramework
         run: |
@@ -77,13 +71,13 @@ jobs:
 
       - name: Upload a Other Artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: Other
           path: 'artifacts/**/*'
 
       - name: Upload a NuGet Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: NuGet
           path: '**/*.nupkg'
