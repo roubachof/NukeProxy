@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123FC3EF2DB8CF3F00217EFA /* NukeExtensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */; };
 		7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; };
 		B08309D5241256530090FB75 /* NukeProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B08309D3241256530090FB75 /* NukeProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B08309E7241259650090FB75 /* NukeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08309E6241259650090FB75 /* NukeProxy.swift */; };
-		CEBEC60F2DB66ACB00FA295C /* NukeExtensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */; };
-		CEBEC6102DB66ACB00FA295C /* NukeExtensions.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEBEC60F2DB66ACB00FA295C /* NukeExtensions.xcframework in Frameworks */,
+				123FC3EF2DB8CF3F00217EFA /* NukeExtensions.xcframework in Frameworks */,
 				7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,7 +93,6 @@
 				B08309CC241256530090FB75 /* Sources */,
 				B08309CD241256530090FB75 /* Frameworks */,
 				B08309CE241256530090FB75 /* Resources */,
-				CEBEC6112DB66ACB00FA295C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
