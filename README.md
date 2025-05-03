@@ -5,21 +5,21 @@ This proxy provides enough API for [Xamarin.Forms.Nuke][xformsnuke] to function.
 
 ## Installation
 
-New! There is now a .net 6 version of the proxy targeting `ios` and `mac catalyst`.
+ImageCaching.Nuke supports .NET 9 for `ios` and `maccatalyst` targets
 
-### .Net 6 ios and macos
+### .NET 9 iOS and macOS
 
 Nuget:
 
 > Install-Package ImageCaching.Nuke
 
-### Xamarin.Forms
+### MAUI UI framework
 
 NuGet:
 
-> Install-Package Xamarin.Nuke
+> Install-Package https://www.nuget.org/packages/Sharpnado.Maui.Nuke
 
-## Setting up locally
+## Building locally
 
 Make sure to install carthage first. This can be done through Homebrew:
 
