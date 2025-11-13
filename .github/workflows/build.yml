@@ -12,10 +12,10 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-15
+    runs-on: macOS-26
     env:
-      XCODE_VERSION: 16.2
-      dotnetVersion: 9.0.200
+      XCODE_VERSION: 26.1
+      dotnetVersion: 10.0.100
 
     steps:
       - name: Checkout
