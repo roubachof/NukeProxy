@@ -12,13 +12,17 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <Copyright>Sharpnado 2020</Copyright>
+    <Copyright>Sharpnado 2025</Copyright>
     <PackageProjectUrl>https://github.com/roubachof/NukeProxy</PackageProjectUrl>
     <PackageIcon>nuke_small.png</PackageIcon>
     <Authors>Jean-Marie Alfonsi, Tomasz Cielecki</Authors>
     <Owners>roubachof,cheesebaron</Owners>
     <PackageTags>xamarin.ios ios nuke image caching glidex</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TF_BUILD)' == 'true' OR '$(GITHUB_ACTIONS)' == 'true' ">
