@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import Nuke
-import NukeExtensions
+internal import Nuke
+internal import NukeExtensions
 
 @objc(ImagePipeline)
 public class ImagePipeline : NSObject {

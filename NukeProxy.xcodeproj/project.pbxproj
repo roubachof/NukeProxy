@@ -3,34 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		123FC3EF2DB8CF3F00217EFA /* NukeExtensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */; };
-		7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D013CDD265D5A2100454172 /* Nuke.xcframework */; };
 		B08309D5241256530090FB75 /* NukeProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B08309D3241256530090FB75 /* NukeProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B08309E7241259650090FB75 /* NukeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08309E6241259650090FB75 /* NukeProxy.swift */; };
+		F590BFEC2EC5BCBC00F87EE9 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = F590BFEB2EC5BCBC00F87EE9 /* Nuke */; };
+		F590BFEE2EC5BCBC00F87EE9 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = F590BFED2EC5BCBC00F87EE9 /* NukeExtensions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D013CDD265D5A2100454172 /* Nuke.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Nuke.xcframework; path = Carthage/Build/Nuke.xcframework; sourceTree = "<group>"; };
 		B08309D0241256530090FB75 /* NukeProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NukeProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08309D3241256530090FB75 /* NukeProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NukeProxy.h; sourceTree = "<group>"; };
 		B08309D4241256530090FB75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B08309E6241259650090FB75 /* NukeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeProxy.swift; sourceTree = "<group>"; };
-		CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NukeExtensions.xcframework; path = Carthage/Build/NukeExtensions.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B08309CD241256530090FB75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				123FC3EF2DB8CF3F00217EFA /* NukeExtensions.xcframework in Frameworks */,
-				7D013CDE265D5A2100454172 /* Nuke.xcframework in Frameworks */,
+				F590BFEC2EC5BCBC00F87EE9 /* Nuke in Frameworks */,
+				F590BFEE2EC5BCBC00F87EE9 /* NukeExtensions in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -65,8 +61,6 @@
 		B08309DB241256A70090FB75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEBEC60E2DB66ACB00FA295C /* NukeExtensions.xcframework */,
-				7D013CDD265D5A2100454172 /* Nuke.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -76,11 +70,9 @@
 /* Begin PBXHeadersBuildPhase section */
 		B08309CB241256530090FB75 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B08309D5241256530090FB75 /* NukeProxy.h in Headers */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
@@ -96,10 +88,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = NukeProxy;
 			packageProductDependencies = (
+				F590BFEB2EC5BCBC00F87EE9 /* Nuke */,
+				F590BFED2EC5BCBC00F87EE9 /* NukeExtensions */,
 			);
 			productName = NukeProxy;
 			productReference = B08309D0241256530090FB75 /* NukeProxy.framework */;
@@ -122,7 +114,6 @@
 				};
 			};
 			buildConfigurationList = B08309CA241256530090FB75 /* Build configuration list for PBXProject "NukeProxy" */;
-			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -131,7 +122,9 @@
 			);
 			mainGroup = B08309C6241256530090FB75;
 			packageReferences = (
+				F590BFEA2EC5BCBC00F87EE9 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = B08309D1241256530090FB75 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -144,26 +137,22 @@
 /* Begin PBXResourcesBuildPhase section */
 		B08309CE241256530090FB75 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B08309CC241256530090FB75 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B08309E7241259650090FB75 /* NukeProxy.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		B08309D6241256530090FB75 /* Debug */ = {
+		B08309D6241256530090FB75 /* Debug configuration for PBXProject "NukeProxy" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -216,7 +205,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -229,7 +218,7 @@
 			};
 			name = Debug;
 		};
-		B08309D7241256530090FB75 /* Release */ = {
+		B08309D7241256530090FB75 /* Release configuration for PBXProject "NukeProxy" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -276,7 +265,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -289,7 +278,7 @@
 			};
 			name = Release;
 		};
-		B08309D9241256530090FB75 /* Debug */ = {
+		B08309D9241256530090FB75 /* Debug configuration for PBXNativeTarget "NukeProxy" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -322,7 +311,7 @@
 			};
 			name = Debug;
 		};
-		B08309DA241256530090FB75 /* Release */ = {
+		B08309DA241256530090FB75 /* Release configuration for PBXNativeTarget "NukeProxy" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -360,22 +349,44 @@
 		B08309CA241256530090FB75 /* Build configuration list for PBXProject "NukeProxy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B08309D6241256530090FB75 /* Debug */,
-				B08309D7241256530090FB75 /* Release */,
+				B08309D6241256530090FB75 /* Debug configuration for PBXProject "NukeProxy" */,
+				B08309D7241256530090FB75 /* Release configuration for PBXProject "NukeProxy" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B08309D8241256530090FB75 /* Build configuration list for PBXNativeTarget "NukeProxy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B08309D9241256530090FB75 /* Debug */,
-				B08309DA241256530090FB75 /* Release */,
+				B08309D9241256530090FB75 /* Debug configuration for PBXNativeTarget "NukeProxy" */,
+				B08309DA241256530090FB75 /* Release configuration for PBXNativeTarget "NukeProxy" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F590BFEA2EC5BCBC00F87EE9 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F590BFEB2EC5BCBC00F87EE9 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F590BFEA2EC5BCBC00F87EE9 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		F590BFED2EC5BCBC00F87EE9 /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F590BFEA2EC5BCBC00F87EE9 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B08309C7241256530090FB75 /* Project object */;
 }

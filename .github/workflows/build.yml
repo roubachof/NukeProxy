@@ -12,10 +12,10 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-15
+    runs-on: macOS-26
     env:
-      XCODE_VERSION: 16.2
-      dotnetVersion: 9.0.200
+      XCODE_VERSION: 26.1
+      dotnetVersion: 10.0.100
 
     steps:
       - name: Checkout
@@ -50,14 +50,6 @@ jobs:
         uses: gittools/actions/gitversion/execute@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3
         with:
           useConfigFile: true
-
-      - name: Bootstrap carthage deps
-        run: |
-          mkdir -p artfifacts
-          sh carthage.sh update --use-xcframeworks --platform iOS --log-path artifacts/carthage.log
-        continue-on-error: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build NukeProxy XCFramework
         run: |

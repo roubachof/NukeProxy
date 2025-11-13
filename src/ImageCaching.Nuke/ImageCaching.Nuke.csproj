@@ -1,22 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net9.0-ios;net9.0-maccatalyst;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <NoBindingEmbedding>true</NoBindingEmbedding>
     <RootNamespace>ImageCaching.Nuke</RootNamespace>
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net9.0-ios'">14.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net10.0-ios'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net10.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
     <BindingPlatform>$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)'))</BindingPlatform>
   </PropertyGroup>
   
   <PropertyGroup>
-    <Copyright>Sharpnado 2020</Copyright>
+    <Copyright>Sharpnado 2025</Copyright>
     <PackageProjectUrl>https://github.com/roubachof/NukeProxy</PackageProjectUrl>
     <PackageIcon>nuke_small.png</PackageIcon>
     <Authors>Jean-Marie Alfonsi, Tomasz Cielecki</Authors>
     <Owners>roubachof,cheesebaron</Owners>
     <PackageTags>xamarin.ios ios nuke image caching glidex</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TF_BUILD)' == 'true' OR '$(GITHUB_ACTIONS)' == 'true' ">
@@ -45,14 +51,6 @@
 
   <ItemGroup>
     <NativeReference Include="..\..\Output\NukeProxy.xcframework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="..\..\Carthage\Build\Nuke.xcframework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="..\..\Carthage\Build\NukeExtensions.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
