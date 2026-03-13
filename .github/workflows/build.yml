@@ -14,8 +14,8 @@ jobs:
   build:
     runs-on: macOS-26
     env:
-      XCODE_VERSION: 26.1
-      dotnetVersion: 10.0.100
+      XCODE_VERSION: 26.2
+      dotnetVersion: 10.0.200
 
     steps:
       - name: Checkout
