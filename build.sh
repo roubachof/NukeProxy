@@ -23,3 +23,6 @@ for binary in Output/NukeProxy.xcframework/*/NukeProxy.framework/NukeProxy; do
         exit 1
     fi
 done
+
+echo "create bindings"
+dotnet sharpie bind -o src/ImageCaching.Nuke/ -s iphoneos27.0 -n ImageCaching.Nuke -f Output/NukeProxy.xcframework/ios-arm64/NukeProxy.framework --verbose
