@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution items/">
+    <File Path="../.github/workflows/build.yml" />
+    <File Path="../.github/workflows/publish.yml" />
+    <File Path="../build.sh" />
+  </Folder>
+  <Project Path="ImageCaching.Nuke/ImageCaching.Nuke.csproj" />
+  <Project Path="Sample/Sample.csproj" />
+</Solution>

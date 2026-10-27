@@ -12,7 +12,7 @@
         <EnableAssemblyILStripping>false</EnableAssemblyILStripping>
         <MtouchLink>None</MtouchLink>
 
-        <Platforms>AnyCPU;iPhone;iPhoneSimulator</Platforms>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' or '$(Configuration)|$(Platform)' == 'Release|iPhone' ">

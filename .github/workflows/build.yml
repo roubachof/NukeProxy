@@ -51,7 +51,7 @@ jobs:
           useConfigFile: true
 
       - name: Build NukeProxy XCFramework
-        run: bash build.sh
+        run: bash build.sh --skip-sharpie
 
       - name: Build Binding Library
         run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
