@@ -21,12 +21,42 @@ public class ImagePipeline : NSObject {
         Nuke.ImagePipeline.shared = Nuke.ImagePipeline(configuration: .withDataCache)
     }
     
+    @objc
+    public static func setupWithDataCache(dataCachePolicy: DataCachePolicy){
+        var configuration = Nuke.ImagePipeline.Configuration.withDataCache
+        configuration.dataCachePolicy = dataCachePolicy.nukePolicy
+        Nuke.ImagePipeline.shared = Nuke.ImagePipeline(configuration: configuration)
+    }
+    
+    @objc
+    public enum DataCachePolicy: Int {
+        case automatic
+        case storeOriginalData
+        case storeEncodedImages
+        case storeAll
+        
+        fileprivate var nukePolicy: Nuke.ImagePipeline.DataCachePolicy {
+            switch self {
+            case .automatic: return .automatic
+            case .storeOriginalData: return .storeOriginalData
+            case .storeEncodedImages: return .storeEncodedImages
+            case .storeAll: return .storeAll
+            }
+        }
+    }
+    
     private var tasks: [ImageTask] = []
     private let taskLock = NSLock()
     
     @objc
     public func isCached(for url: URL) -> Bool {
         return Nuke.ImagePipeline.shared.cache.containsCachedImage(for: ImageRequest(url: url))
+    }
+    
+    @objc
+    public func isCached(for url: URL, imageIdKey: String, maxPixelSize: Float) -> Bool {
+        let request = ImageRequest(url: url, userInfo: [.imageIdKey: imageIdKey, .thumbnailKey: ImageRequest.ThumbnailOptions(maxPixelSize: maxPixelSize)])
+        return Nuke.ImagePipeline.shared.cache.containsCachedImage(for: request)
     }
     
     @objc
@@ -110,6 +140,27 @@ public class ImagePipeline : NSObject {
         return addTask(task)
     }
     
+    @MainActor @objc
+    public func loadImage(url: URL, imageIdKey: String, maxPixelSize: Float, placeholder: UIImage?, errorImage: UIImage?, into: UIImageView) -> Int64 {
+        let options = ImageLoadingOptions(placeholder: placeholder, failureImage: errorImage)
+        let urlRequest = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        let request = ImageRequest(
+            urlRequest: urlRequest,
+            userInfo: [
+                .imageIdKey: imageIdKey,
+                .thumbnailKey: ImageRequest.ThumbnailOptions(maxPixelSize: maxPixelSize)
+            ]
+        )
+
+        let task = NukeExtensions.loadImage(
+            with: request,
+            options: options,
+            into: into
+        )
+
+        return addTask(task)
+    }
+
     @objc
     public func loadData(url: URL, onCompleted: @escaping (Data?, URLResponse?) -> Void) -> Int64 {
         return loadData(url: url, imageIdKey: nil, reloadIgnoringCachedData: false, onCompleted: onCompleted)

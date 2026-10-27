@@ -48,9 +48,18 @@ namespace ImageCaching.Nuke
 		[Export ("setupWithDataCache")]
 		void SetupWithDataCache ();
 
+		// +(void)setupWithDataCacheWithDataCachePolicy:(enum DataCachePolicy)dataCachePolicy;
+		[Static]
+		[Export ("setupWithDataCacheWithDataCachePolicy:")]
+		void SetupWithDataCache (DataCachePolicy dataCachePolicy);
+
 		// -(BOOL)isCachedFor:(NSURL * _Nonnull)url __attribute__((warn_unused_result("")));
 		[Export ("isCachedFor:")]
 		bool IsCachedFor (NSUrl url);
+
+		// -(BOOL)isCachedFor:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey maxPixelSize:(float)maxPixelSize __attribute__((warn_unused_result("")));
+		[Export ("isCachedFor:imageIdKey:maxPixelSize:")]
+		bool IsCachedFor (NSUrl url, string imageIdKey, float maxPixelSize);
 
 		// -(UIImage * _Nullable)getCachedImageFor:(NSURL * _Nonnull)url __attribute__((warn_unused_result("")));
 		[Export ("getCachedImageFor:")]
@@ -84,6 +93,10 @@ namespace ImageCaching.Nuke
 		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData;
 		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:reloadIgnoringCachedData:")]
 		long LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
+
+		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey maxPixelSize:(float)maxPixelSize placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		[Export ("loadImageWithUrl:imageIdKey:maxPixelSize:placeholder:errorImage:into:")]
+		long LoadImageWithUrl (NSUrl url, string imageIdKey, float maxPixelSize, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
 		// -(Int64)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
 		[Export ("loadDataWithUrl:onCompleted:")]
