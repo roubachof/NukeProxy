@@ -6,7 +6,6 @@ using UIKit;
 
 namespace ImageCaching.Nuke {
 	[Static]
-	[Verify (ConstantsInterfaceAssociation)]
 	partial interface Constants {
 		// extern double NukeProxyVersionNumber;
 		[Field ("NukeProxyVersionNumber", "__Internal")]
