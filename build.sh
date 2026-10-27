@@ -2,6 +2,17 @@
 
 set -euo pipefail
 
+skip_sharpie=false
+for argument in "$@"; do
+    case "$argument" in
+        --skip-sharpie) skip_sharpie=true ;;
+        *)
+            echo "Usage: $0 [--skip-sharpie]" >&2
+            exit 1
+            ;;
+    esac
+done
+
 cd "$(dirname "$0")"
 
 mkdir -p artifacts
@@ -24,5 +35,7 @@ for binary in Output/NukeProxy.xcframework/*/NukeProxy.framework/NukeProxy; do
     fi
 done
 
-echo "create bindings"
-dotnet sharpie bind -o src/ImageCaching.Nuke/ -s iphoneos27.0 -n ImageCaching.Nuke -f Output/NukeProxy.xcframework/ios-arm64/NukeProxy.framework --verbose
+if [[ "$skip_sharpie" == false ]]; then
+    echo "create bindings"
+    dotnet sharpie bind -o src/ImageCaching.Nuke/ -s iphoneos27.0 -n ImageCaching.Nuke -f Output/NukeProxy.xcframework/ios-arm64/NukeProxy.framework --verbose
+fi

@@ -44,6 +44,8 @@ bash build.sh
 
 This creates `Output/NukeProxy.xcframework` with ARM64-only slices for iOS devices, iOS Simulator, and Mac Catalyst, targeting iOS/Mac Catalyst 15.0 or later.
 
+To build the XCFramework without regenerating the binding definitions, run `bash build.sh --skip-sharpie`. CI uses this option to preserve the checked-in definitions.
+
 > Intel (`x86_64`) Macs and simulators are no longer supported. The script verifies that each generated framework contains only ARM64.
 
 CI uses the same script on the `xcode-27` runner and explicitly selects Xcode 27.1. Xcode upgrades require changing the pinned `XCODE_VERSION` in `.github/workflows/build.yml`.
