@@ -76,7 +76,7 @@ namespace ImageCaching.Nuke {
 
 		// -(int64_t)loadImageWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(UIImage * _Nullable, NSString * _Nonnull))onCompleted __attribute__((warn_unused_result("")));
 		[Export ("loadImageWithUrl:onCompleted:")]
-		long LoadImageWithUrl (NSUrl url, Action<UIImage, NSString> onCompleted);
+		long LoadImageWithUrl (NSUrl url, Action<UIKit.UIImage?, NSString> onCompleted);
 
 		// -(int64_t)loadImageWithUrl:(NSURL * _Nonnull)url placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into __attribute__((warn_unused_result("")));
 		[Export ("loadImageWithUrl:placeholder:errorImage:into:")]
@@ -96,11 +96,11 @@ namespace ImageCaching.Nuke {
 
 		// -(int64_t)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted __attribute__((warn_unused_result("")));
 		[Export ("loadDataWithUrl:onCompleted:")]
-		long LoadDataWithUrl (NSUrl url, Action<NSData, NSURLResponse> onCompleted);
+		long LoadDataWithUrl (NSUrl url, Action<Foundation.NSData?, Foundation.NSUrlResponse?> onCompleted);
 
 		// -(int64_t)loadDataWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nullable)imageIdKey reloadIgnoringCachedData:(BOOL)reloadIgnoringCachedData onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted __attribute__((warn_unused_result("")));
 		[Export ("loadDataWithUrl:imageIdKey:reloadIgnoringCachedData:onCompleted:")]
-		long LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<NSData, NSURLResponse> onCompleted);
+		long LoadDataWithUrl (NSUrl url, [NullAllowed] string imageIdKey, bool reloadIgnoringCachedData, Action<Foundation.NSData?, Foundation.NSUrlResponse?> onCompleted);
 
 		// -(void)cancelTasksForUrl:(NSString * _Nonnull)url;
 		[Export ("cancelTasksForUrl:")]
