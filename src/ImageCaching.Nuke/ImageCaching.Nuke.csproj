@@ -9,6 +9,7 @@
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net10.0-ios'">15.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net10.0-maccatalyst'">15.0</SupportedOSPlatformVersion>
     <BindingPlatform>$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)'))</BindingPlatform>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   
   <PropertyGroup>
