@@ -12,10 +12,10 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-26
+    runs-on: xcode-27
     env:
-      XCODE_VERSION: 26.1
-      dotnetVersion: 10.0.100
+      XCODE_VERSION: '27.1'
+      dotnetVersion: 10.0.403
 
     steps:
       - name: Checkout
@@ -24,11 +24,10 @@ jobs:
           fetch-depth: 0
 
       - name: Select Xcode ${{ env.XCODE_VERSION }}
-        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
-
-      - run: |
-          mkdir artifacts
-        name: Create Artifacts Directory
+        run: |
+          sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
+          xcodebuild -version
+          test "$(xcodebuild -version | head -n 1)" = "Xcode ${XCODE_VERSION}"
 
       - name: Setup .NET
         uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
@@ -52,11 +51,7 @@ jobs:
           useConfigFile: true
 
       - name: Build NukeProxy XCFramework
-        run: |
-          xcodebuild archive -sdk iphoneos -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphoneos SKIP_INSTALL=NO
-          xcodebuild archive -sdk iphonesimulator -project NukeProxy.xcodeproj -scheme NukeProxy -configuration Release -archivePath Output/Output-iphonesimulator SKIP_INSTALL=NO
-
-          xcodebuild -create-xcframework -framework Output/Output-iphonesimulator.xcarchive/Products/Library/Frameworks/NukeProxy.framework -framework Output/Output-iphoneos.xcarchive/Products/Library/Frameworks/NukeProxy.framework -output Output/NukeProxy.xcframework
+        run: bash build.sh
 
       - name: Build Binding Library
         run: dotnet build src/ImageCaching.Nuke/ImageCaching.Nuke.csproj /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}

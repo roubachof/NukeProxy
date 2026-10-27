@@ -5,9 +5,9 @@ This proxy provides enough API for [Xamarin.Forms.Nuke][xformsnuke] to function.
 
 ## Installation
 
-ImageCaching.Nuke supports .NET 9 for `ios` and `maccatalyst` targets
+ImageCaching.Nuke supports .NET 9 and .NET 10 for `ios` and `maccatalyst` targets on ARM64, with a minimum iOS/Mac Catalyst version of 15.0.
 
-### .NET 9 iOS and macOS
+### .NET 9 / .NET 10 iOS and Mac Catalyst
 
 Nuget:
 
@@ -21,17 +21,17 @@ NuGet:
 
 ## Building locally
 
-Make sure to install carthage first. This can be done through Homebrew:
+Install Xcode 27.1 and select it as your active developer directory. Xcode resolves the Nuke dependency through Swift Package Manager automatically.
 
-```
-brew install carthage
+Install .NET 10.0.403 SDK and ios and maccatalyst workloads.
+
+```sh
+bash build.sh
 ```
 
-Getting Nuke from carthage:
+This creates `Output/NukeProxy.xcframework` with ARM64-only slices for iOS devices, iOS Simulator, and Mac Catalyst, targeting iOS/Mac Catalyst 15.0 or later. Intel (`x86_64`) Macs and simulators are no longer supported. The script verifies that each generated framework contains only ARM64.
 
-```
-sh carthage.sh update --use-xcframeworks
-```
+CI uses the same script on the `xcode-27` runner and explicitly selects Xcode 27.1. Xcode upgrades require changing the pinned `XCODE_VERSION` in `.github/workflows/build.yml`.
 
 ## Exposing more API
 
@@ -39,7 +39,7 @@ Open the NukeProxy.xcodeproj in Xcode and add more code to `NukeProxy.swift`.
 
 Make sure to annotate correctly with `@objc`. Refer to the other code and [Xamarin.iOS Swift Bindings][bindings]. When done adding more code, ensure project builds:
 
-1. Run `sh build.sh` from commandline (make sure you have [the latest Sharpie][sharpie] installed)
+1. Run `bash build.sh` from the command line to rebuild the ARM64 XCFramework
 2. Copy the new definitions from the `sharpie_output` folder into the `Xamarin.Nuke` C# project
 3. Adjust the definitions and ensure the project builds
 4. Create a PR to this repository
