@@ -7,7 +7,7 @@
         <ApplicationTitle>Nuke Sample</ApplicationTitle>
         <ApplicationId>awesomeorg.nuke.sample</ApplicationId>
 
-        <SupportedOSPlatformVersion>14.5</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 
         <EnableAssemblyILStripping>false</EnableAssemblyILStripping>
         <MtouchLink>None</MtouchLink>
