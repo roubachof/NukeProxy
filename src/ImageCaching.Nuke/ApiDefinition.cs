@@ -60,7 +60,7 @@ namespace ImageCaching.Nuke {
 		// +(void)setupWithDataCacheWithDataCachePolicy:(enum DataCachePolicy)dataCachePolicy;
 		[Static]
 		[Export ("setupWithDataCacheWithDataCachePolicy:")]
-		void SetupWithDataCache (DataCachePolicy dataCachePolicy);
+		void SetupWithDataCacheWithDataCachePolicy (DataCachePolicy dataCachePolicy);
 
 		// -(BOOL)isCachedFor:(NSURL * _Nonnull)url __attribute__((warn_unused_result("")));
 		[Export ("isCachedFor:")]
@@ -103,11 +103,11 @@ namespace ImageCaching.Nuke {
 		[Export ("loadImageWithUrl:imageIdKey:placeholder:errorImage:into:reloadIgnoringCachedData:")]
 		long LoadImageWithUrl (NSUrl url, string imageIdKey, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into, bool reloadIgnoringCachedData);
 
-		// -(Int64)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey maxPixelSize:(float)maxPixelSize placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into;
+		// -(int64_t)loadImageWithUrl:(NSURL * _Nonnull)url imageIdKey:(NSString * _Nonnull)imageIdKey maxPixelSize:(float)maxPixelSize placeholder:(UIImage * _Nullable)placeholder errorImage:(UIImage * _Nullable)errorImage into:(UIImageView * _Nonnull)into __attribute__((warn_unused_result("")));
 		[Export ("loadImageWithUrl:imageIdKey:maxPixelSize:placeholder:errorImage:into:")]
 		long LoadImageWithUrl (NSUrl url, string imageIdKey, float maxPixelSize, [NullAllowed] UIImage placeholder, [NullAllowed] UIImage errorImage, UIImageView into);
 
-		// -(Int64)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSUrlResponse * _Nullable))onCompleted;
+		// -(int64_t)loadDataWithUrl:(NSURL * _Nonnull)url onCompleted:(void (^ _Nonnull)(NSData * _Nullable, NSURLResponse * _Nullable))onCompleted __attribute__((warn_unused_result("")));
 		[Export ("loadDataWithUrl:onCompleted:")]
 		long LoadDataWithUrl (NSUrl url, Action<Foundation.NSData?, Foundation.NSUrlResponse?> onCompleted);
 
