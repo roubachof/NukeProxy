@@ -1,21 +1,9 @@
 using System;
 using Foundation;
-using NukeProxy;
 using ObjCRuntime;
 using UIKit;
 
 namespace ImageCaching.Nuke {
-	[Static]
-	partial interface Constants {
-		// extern double NukeProxyVersionNumber;
-		[Field ("NukeProxyVersionNumber", "__Internal")]
-		double NukeProxyVersionNumber { get; }
-
-		// extern const unsigned char[] NukeProxyVersionString;
-		[Field ("NukeProxyVersionString", "__Internal")]
-		byte [] NukeProxyVersionString { get; }
-	}
-
 	// @interface DataLoader : NSObject
 	[BaseType (typeof (NSObject))]
 	interface DataLoader {
